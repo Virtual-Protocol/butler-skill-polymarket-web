@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.5
+
+- Speed (2026-10-22 run logged in but took 11m 50s, 46 steps):
+  - Clear the email field before typing, then read it back. The field kept an
+    old address and act typed a second copy after it, so no code was sent.
+  - Use only a Polymarket mail that arrived after this Continue. The run took
+    a dead code from an earlier attempt.
+  - One `browser_observe` per click, no screenshot unless something is wrong.
+  - Write the reader only before steps 2 and 4, not before a login.
+
 ## 0.1.4
 
 - Login code: type it with `browser_type_code` (virtuals-agent), never
