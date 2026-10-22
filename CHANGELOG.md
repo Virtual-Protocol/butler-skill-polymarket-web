@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+- Login code: type it with `browser_type_code` (virtuals-agent), never
+  `browser_act`. Even with the skill, act put the code into polymarket.com's
+  search bar twice on 2026-10-22.
+
 ## 0.1.3
 
 - Geoblock: compare the check's `country` with the owner's first. A different
