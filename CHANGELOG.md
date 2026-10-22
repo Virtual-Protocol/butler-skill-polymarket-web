@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6
+
+- New account: fill "Choose a username" with the email's local part, tick the
+  terms, Continue; never ask the owner. The 2026-10-22 run stopped there to ask.
+
 ## 0.1.5
 
 - Speed (2026-10-22 run logged in but took 11m 50s, 46 steps):
