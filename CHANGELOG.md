@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3
+
+- Geoblock: compare the check's `country` with the owner's first. A different
+  country is a proxy miss (Browserbase falls back to the closest exit, e.g.
+  Singapore for Malaysia): set the country again and recheck once, never call
+  it a block. 2026-10-22 run told a Malaysian owner Polymarket was closed.
+
 ## 0.1.2
 
 - Login code: click Continue once, wait on the inbox without touching the page,
