@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.2
+
+- Login code: click Continue once, wait on the inbox without touching the page,
+  type the code into the first of the six boxes inside the pop-up (2026-10-22
+  staging run typed it into search, which closed the pop-up, and looped for
+  20 min re-sending codes).
+- Pop-up closed or "Page not found": screenshot, start over once, use only the
+  newest code.
+
 ## 0.1.1
 
 - Set up the Butler's email before the browser when it has none (`setup_email`,
