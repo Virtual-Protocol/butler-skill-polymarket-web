@@ -3,6 +3,7 @@
 ## 0.4.0 — 2026-10-23
 
 - Tool names: the Polymarket tools are now generic site tools in the container (virtuals-agent refactor/site-tools): `polymarket_account` → `site_account`, `polymarket_trade` → `site_order`, `polymarket_withdraw` → `site_withdraw`. Each takes `site: "polymarket"`; inputs, checks and cards are otherwise unchanged. Needs that container image first: an older image has only the old names.
+- Dropped the "never hold more than $50" rule: the owner did not ask for a cap, and every deposit still gets its own card. bevo-server drops its $50 per-withdraw cap too (fix/polymarket-no-withdraw-cap).
 
 ## 0.3.3 — 2026-10-23
 
