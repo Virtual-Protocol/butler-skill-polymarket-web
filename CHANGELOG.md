@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.9 — 2026-10-23
+
+- Deposit: no browser. Send only to `polymarket_account`'s bridge `depositAddress`. The site's Deposit page is fun.xyz's checkout with its own address (live: page 0xeB8f…, bridge 0x53C9…, same Deposit Wallet), so 0.2.8's page comparison always stopped.
+
 ## 0.2.8 — 2026-10-23
 
 Checked every step against the live walkthrough and the tool code.
