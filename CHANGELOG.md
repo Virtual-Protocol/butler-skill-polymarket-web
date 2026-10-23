@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4 — 2026-10-23
+
+- Step 3: never click Convert or Auto-redeem; the server refuses their signatures (audit of the site's code). Shorter wording in steps 3 and 5; no rule changed.
+
 ## 0.2.3 — 2026-10-23
 
 - Step 3: an old or other account is logged out and the wallet login done in the same turn. Live test: the Butler said "logging out first" and ended its turn.
