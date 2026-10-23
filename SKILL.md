@@ -129,7 +129,8 @@ Never guess a price.
 | `POLYMARKET_GEOBLOCKED` | Not available in your owner's country; nothing was sent. Say so and stop. Never try anything else: no other country, no VPN. |
 | `POLYMARKET_GEOBLOCK_UNCHECKED` | Their country could not be checked, or is unknown; nothing was sent. Never say they are blocked. Ask them to open the Virtuals app once, then file again with a new key. |
 | `POLYMARKET_READ_BUSY` | A read is still running. Wait, then read once more; never loop. Not an empty account. |
-| `POLYMARKET_UNAVAILABLE`, `POLYMARKET_RUN_IN_PROGRESS`, `POLYMARKET_BROWSER_BUDGET`, `POLYMARKET_BROWSER_UNAVAILABLE` | Could not run now (a deposit's bridge refusal is `POLYMARKET_UNAVAILABLE` too). Wait a minute, file once more with a new key; if refused again, stop and tell the owner. |
+| `POLYMARKET_UNAVAILABLE`, `POLYMARKET_RUN_IN_PROGRESS`, `POLYMARKET_BROWSER_UNAVAILABLE` | Could not run now (a deposit's bridge refusal is `POLYMARKET_UNAVAILABLE` too). Wait a minute, file once more with a new key; if refused again, stop and tell the owner. |
+| `POLYMARKET_BROWSER_BUDGET` | Daily budget spent. Don't retry today; tell the owner it works again tomorrow. |
 | `POLYMARKET_READ_FAILED` | Could not read Polymarket. Say you could not check it. |
 | A card failed with nothing sent | Give the reason as written; nothing moved. |
 | A card failed with "file again with a new key" | The account needed setup that card did not include. File it once more with a new key. |

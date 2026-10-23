@@ -58,9 +58,9 @@ Polymarket's own minimums, the account's cash and the wallet's balance.
 | `POLYMARKET_NOTHING_TO_REDEEM` | Butler holds no redeemable shares in that market |
 | `POLYMARKET_UNAVAILABLE` | Polymarket did not answer, or a deposit's bridge refused. Wait a minute, file once more with a new key; then stop and tell the owner |
 | `POLYMARKET_RUN_IN_PROGRESS` | Another Polymarket act is running. Same as above: wait a minute, one more try with a new key, then stop |
-| `POLYMARKET_BROWSER_BUDGET` | The server's browser budget for the owner is spent. Same as above |
+| `POLYMARKET_BROWSER_BUDGET` | The owner's daily browser budget is spent. Nothing was sent. Do not retry today: tell the owner it works again tomorrow (then a new key) |
 | `POLYMARKET_BROWSER_UNAVAILABLE` | No server browser was free in the owner's country. Same as above; never another country |
-| `POLYMARKET_NOT_ENABLED` | Not on for this account yet |
+| `POLYMARKET_NOT_ENABLED` | Polymarket is switched off for now. Tell the owner; don't retry |
 | `POLYMARKET_SIGNER_NOT_READY` | The owner enables Butler's signer in the app first, then file again with a new key |
 | `POLYMARKET_CHAT_ONLY` | Filed from a duty; Polymarket is chat only |
 
