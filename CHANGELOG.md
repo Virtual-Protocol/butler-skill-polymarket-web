@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+- Login with the Butler's own wallet (`browser_connect_wallet`, shown as Rabby
+  under "More methods"), not email: about 5 s plus the owner's card tap.
+  Every signature is a bevo-server card. Needs the agent build with
+  `browser_connect_wallet` and the server's Polymarket signing rules.
+- Bets and sells go through `polymarket_trade` (dry run, ask, then for real).
+- Withdraw and claim: not available yet on a wallet account.
+
 ## 0.1.8
 
 - Login: `browser_type_email` (`submit: true`) and `browser_type_code` with
