@@ -1,7 +1,7 @@
 ---
-name: butler-polymarket-web
+name: polymarket
 description: "Bet on Polymarket from Butler's wallet: find a market and its odds, then bet, sell, redeem, deposit or withdraw, each act a card the owner approves."
-version: 1.0.1
+version: 1.0.2
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","redeem polymarket","withdraw from polymarket","deposit to polymarket"],"requires":{"bins":["acp","bevo-read","curl"]}}}
 ---
 
@@ -19,8 +19,7 @@ Your owner names **Polymarket** (a share pays $1 if its outcome happens) and wan
 
 Not this skill: Hyperliquid perps (`acp trade`), Variational, Papertrade, or a bet your
 owner did not say is on Polymarket. Every act here is a card the owner approves; nothing
-moves without it. Polymarket is only on for some accounts: a refusal says so, and you
-relay it.
+moves without it. Polymarket may be off: relay the refusal.
 
 **No browser, ever.** polymarket.com is blocked in your browser. Reading markets is `curl`
 to Polymarket's public API; everything else is `bevo-read` and `acp polymarket`.
@@ -44,8 +43,8 @@ bevo-server does the rest after the owner approves.
    "You pick" is not a choice: ask.
 2. **You confirmed it:** you said back the exact market question and outcome name from
    step 2, and they said yes to that market.
-3. **The read is fresh:** step 1 ran after their last answer, so you know their cash and
-   whether they already hold that market.
+3. **The read is fresh:** step 1 ran after their last answer (or its `asOf` is under 60 s
+   old), so you know their cash and whether they already hold that market.
 
 ## Procedure
 
@@ -57,8 +56,9 @@ bevo-server does the rest after the owner approves.
 
    Relay it as given (`references/account.md`). `hasAccount: false` means no Polymarket
    account yet: the first bet card sets it up; a sell, redeem or withdraw has nothing to act
-   on. One read a minute: when told to wait, wait; never loop. A failed read: say you could
-   not check it.
+   on. Within 60 s of a good read the server returns that read again, with its `asOf`.
+   `POLYMARKET_READ_BUSY` means a read is still running: wait, then read once more; never
+   loop. A failed read: say you could not check it.
 
 2. [ADAPT] Find the market, read only (`references/markets.md` has every query):
 
@@ -92,8 +92,8 @@ bevo-server does the rest after the owner approves.
    acp polymarket withdraw --amount <USD> --idempotency-key <KEY>
    ```
 
-   The outcome goes in double quotes (`--outcome "Team Liquid"`), never single quotes; a
-   value holding a quote mark or a line break is refused. The reply is an approval card in
+   The outcome goes in double quotes (`--outcome "Team Liquid"`), never single quotes. A
+   `'` inside is fine (`--outcome "Don't Know"`); only a `"` or a line break is refused. The reply is an approval card in
    this chat: tell your owner what it does, and to approve it in the app.
 
 4. [FIXED] Wait for the card's outcome; never file it again to find out:
@@ -115,7 +115,7 @@ bevo-server does the rest after the owner approves.
 
 One key per errand, such as `pm:fed-cut:yes:1`. On an error, a timeout or an unclear
 answer, **do not re-run** `acp polymarket`: a second bet is a second bet. Look it up as in
-step 4. A `curl` error in step 2: try once more, then say you could not read the market.
+step 4. When a hint says to file it again, that always means a **new** `--idempotency-key`. A `curl` error in step 2: try once more, then say you could not read the market.
 Never guess a price.
 
 ## Failure handling
@@ -123,15 +123,16 @@ Never guess a price.
 | Answer | What to do |
 | --- | --- |
 | `POLYMARKET_NOT_ENABLED` | Not available on this account yet. Say so; don't retry. |
-| `POLYMARKET_SIGNER_NOT_READY` | Ask your owner to enable Butler's signer in the app, then file it again. |
+| `POLYMARKET_SIGNER_NOT_READY` | Ask your owner to enable Butler's signer in the app, then file it again with a new key. |
 | `POLYMARKET_CHAT_ONLY` | You are in a duty. Polymarket is chat only; tell the owner in chat. |
 | `POLYMARKET_BAD_COMMAND` | Fix the command from its hint (`references/commands.md`); nothing was filed. |
 | `POLYMARKET_GEOBLOCKED` | Not available in your owner's country; nothing was sent. Say so and stop. Never try anything else: no other country, no VPN. |
-| `POLYMARKET_GEOBLOCK_UNCHECKED` | Their country could not be checked; nothing was sent. Never say they are blocked; say it could not run now. |
-| `POLYMARKET_READ_BUSY` | One read a minute. Wait a minute, then read once; never loop. Not an empty account. |
-| `POLYMARKET_UNAVAILABLE` | Polymarket did not answer; nothing was filed. Try once more in a minute, same key. |
+| `POLYMARKET_GEOBLOCK_UNCHECKED` | Their country could not be checked, or is unknown; nothing was sent. Never say they are blocked. Ask them to open the Virtuals app once, then file again with a new key. |
+| `POLYMARKET_READ_BUSY` | A read is still running. Wait, then read once more; never loop. Not an empty account. |
+| `POLYMARKET_UNAVAILABLE`, `POLYMARKET_RUN_IN_PROGRESS`, `POLYMARKET_BROWSER_BUDGET`, `POLYMARKET_BROWSER_UNAVAILABLE` | Could not run now (a deposit's bridge refusal is `POLYMARKET_UNAVAILABLE` too). Wait a minute, file once more with a new key; if refused again, stop and tell the owner. |
 | `POLYMARKET_READ_FAILED` | Could not read Polymarket. Say you could not check it. |
 | A card failed with nothing sent | Give the reason as written; nothing moved. |
+| A card failed with "file again with a new key" | The account needed setup that card did not include. File it once more with a new key. |
 | A card failed with "check Polymarket before asking again" | Step 1; tell the owner what it shows. Never resend. |
 | `POLYMARKET_MARKET_CLOSED` | The market is not taking orders: say so. Offer `redeem` once it is redeemable. |
 | No market fits the search | Say so, and ask for other words. Never pick a near match yourself. |

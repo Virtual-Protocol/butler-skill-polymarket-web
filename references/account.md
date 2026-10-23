@@ -1,8 +1,9 @@
 # Reading the Polymarket account
 
-One read, not a card: it moves nothing. It is refused from a duty. It runs at most once a
-minute: when it answers `POLYMARKET_READ_BUSY`, wait a minute and read again once; never
-loop.
+One read, not a card: it moves nothing. It is refused from a duty. Within 60 s of a good
+read, the server returns that same read again, with `asOf` saying when it was taken. It
+answers `POLYMARKET_READ_BUSY` only while another read is still running: wait, then read
+once more; never loop.
 
 ## `bevo-read get /polymarket/account`
 
@@ -16,6 +17,7 @@ loop.
 | `depositWallet` | the account's Polymarket wallet. Never send money to it yourself: `deposit` does that |
 | `cash` | dollars ready to bet or withdraw |
 | `positions[]` | each bet they hold, below |
+| `asOf` | when this read was taken. One under 60 s old is fresh enough to act on |
 | `openOrders` | orders still resting on Polymarket. Bets and sells here fill now or not at all, so this is empty |
 
 ### A position

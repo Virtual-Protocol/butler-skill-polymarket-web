@@ -4,8 +4,9 @@ Each one files an approval card; nothing runs until the owner approves it. bevo-
 parses the command strictly: an unknown flag, a repeated one or a stray word is
 `POLYMARKET_BAD_COMMAND` and nothing is filed. Every one takes
 `--idempotency-key <KEY>`. Write the outcome in double quotes, `--outcome "Team Liquid"`:
-one double-quoted value per flag, no escapes, never single quotes. A value holding a `'`,
-a `"` or a line break is refused before anything is filed. The exact lines to run are in `SKILL.md` step 3; this file is
+one double-quoted value per flag, no escapes, never single quotes. A `'` inside the double
+quotes is fine (`--outcome "Don't Know"`); only a value holding a `"` or a line break is
+refused before anything is filed. The exact lines to run are in `SKILL.md` step 3; this file is
 what each one does.
 
 | Command | What the card does |
@@ -52,12 +53,15 @@ Polymarket's own minimums, the account's cash and the wallet's balance.
 | --- | --- |
 | `POLYMARKET_BAD_COMMAND` | A flag is wrong or missing; fix it from the hint. Nothing was filed |
 | `POLYMARKET_GEOBLOCKED` | Polymarket is not available in the owner's country. Nothing was sent. Stop: never try another country, a VPN or anything else |
-| `POLYMARKET_GEOBLOCK_UNCHECKED` | The owner's country could not be checked. Nothing was sent. Never say they are blocked |
+| `POLYMARKET_GEOBLOCK_UNCHECKED` | The owner's country could not be checked, or is unknown. Nothing was sent. Never say they are blocked: ask them to open the Virtuals app once, then file again with a new key |
 | `POLYMARKET_MARKET_CLOSED` | The market is not taking orders, or nobody is buying or selling that outcome now |
 | `POLYMARKET_NOTHING_TO_REDEEM` | Butler holds no redeemable shares in that market |
-| `POLYMARKET_UNAVAILABLE` | Polymarket did not answer. Nothing was filed; try once more in a minute with the same key |
+| `POLYMARKET_UNAVAILABLE` | Polymarket did not answer, or a deposit's bridge refused. Wait a minute, file once more with a new key; then stop and tell the owner |
+| `POLYMARKET_RUN_IN_PROGRESS` | Another Polymarket act is running. Same as above: wait a minute, one more try with a new key, then stop |
+| `POLYMARKET_BROWSER_BUDGET` | The server's browser budget for the owner is spent. Same as above |
+| `POLYMARKET_BROWSER_UNAVAILABLE` | No server browser was free in the owner's country. Same as above; never another country |
 | `POLYMARKET_NOT_ENABLED` | Not on for this account yet |
-| `POLYMARKET_SIGNER_NOT_READY` | The owner enables Butler's signer in the app first |
+| `POLYMARKET_SIGNER_NOT_READY` | The owner enables Butler's signer in the app first, then file again with a new key |
 | `POLYMARKET_CHAT_ONLY` | Filed from a duty; Polymarket is chat only |
 
 ## When a card fails
@@ -65,3 +69,9 @@ Polymarket's own minimums, the account's cash and the wallet's balance.
 A failed card's `approvalFailureReason` that says **"check Polymarket before asking
 again"** means nobody knows whether money moved. Run `bevo-read get /polymarket/account`,
 tell the owner what it shows, and never file that card again.
+
+A failed card that says **"file again with a new key"** means the account needed setup
+that card did not include (it had no "First time" line). Nothing moved: file it once more
+with a new `--idempotency-key`.
+
+Any hint that says to file again means a new `--idempotency-key`, never the old one.

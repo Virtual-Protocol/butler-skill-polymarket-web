@@ -1,5 +1,7 @@
 # butler-skill-polymarket-web
 
+Installs as the skill `polymarket` (its `SKILL.md` name). The repo keeps its old name for now.
+
 Teaches a Butler agent to use [Polymarket](https://polymarket.com) from its own wallet: find
 a market and its odds, bet on an outcome, sell or redeem shares, deposit USDC on Base, and
 withdraw back to the Butler wallet. Each money act is an approval card the owner approves

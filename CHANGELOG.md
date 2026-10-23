@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.0.2
+
+- The skill is now named `polymarket` (was `butler-polymarket-web`). The repo name is
+  unchanged.
+- A `'` inside a double-quoted value is fine: `--outcome "Don't Know"`. Only a `"` or a line
+  break is refused.
+- "File it again" in any hint means a new `--idempotency-key`.
+- `POLYMARKET_RUN_IN_PROGRESS`, `POLYMARKET_BROWSER_BUDGET`, `POLYMARKET_BROWSER_UNAVAILABLE`
+  and `POLYMARKET_UNAVAILABLE` (also a deposit's bridge refusal): wait a minute, file once
+  more with a new key, then stop and tell the owner.
+- `POLYMARKET_GEOBLOCK_UNCHECKED` also covers an unknown owner country: ask the owner to
+  open the Virtuals app once, then file again with a new key. Never say they are blocked.
+- Account read: within 60 s the server returns the last good read with `asOf`;
+  `POLYMARKET_READ_BUSY` only while a read is running. A read under 60 s old counts as
+  fresh after the owner's yes.
+- A card may fail with "file again with a new key" when the account needed setup the card
+  did not include.
+- "Polymarket may be off: relay the refusal."
+
 ## 1.0.1
 
 Matches the final server runner and container forwarder.
