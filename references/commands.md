@@ -1,6 +1,7 @@
 # Every Polymarket command
 
-Each one files an approval card; nothing runs until the owner approves it. bevo-server
+In chat each one files an approval card; nothing runs until the owner approves it. In a
+duty, see "From a duty" below. bevo-server
 parses the command strictly: an unknown flag, a repeated one or a stray word is
 `POLYMARKET_BAD_COMMAND` and nothing is filed. Every one takes
 `--idempotency-key <KEY>`. Write the outcome in double quotes, `--outcome "Team Liquid"`:
@@ -62,7 +63,17 @@ Polymarket's own minimums, the account's cash and the wallet's balance.
 | `POLYMARKET_BROWSER_UNAVAILABLE` | No server browser was free in the owner's country. Same as above; never another country |
 | `POLYMARKET_NOT_ENABLED` | Polymarket is switched off for now. Tell the owner; don't retry |
 | `POLYMARKET_SIGNER_NOT_READY` | The owner enables Butler's signer in the app first, then file again with a new key |
-| `POLYMARKET_CHAT_ONLY` | Filed from a duty; Polymarket is chat only |
+| `POLYMARKET_CHAT_ONLY` | An older server: this act is chat only |
+| `POLYMARKET_DUTY_NOT_ARMED` | The duty has no Polymarket allowance. The owner sets one on the duty in the app |
+| `POLYMARKET_DUTY_OP` | `deposit` or `withdraw` from a duty. Chat only |
+| `POLYMARKET_DUTY_MAX_BET` | The bet is over the duty's max per bet |
+| `POLYMARKET_DUTY_BUDGET` | The bet is over what is left of the duty's budget. The owner gets one note |
+| `POLYMARKET_DUTY_MARKET` | The market is not on the duty's market list |
+| `POLYMARKET_DUTY_RUNS` | The duty used its runs a day (rolling 24 h; every Polymarket run counts) |
+| `POLYMARKET_DUTY_NOT_OWN` | A sell or redeem of a position this duty did not open |
+| `POLYMARKET_SETUP_NEEDED` | The account needs first-time setup. The owner places one bet from chat |
+| `POLYMARKET_COUNTRY_STALE` | The owner's country was last checked over 7 days ago. They open the Virtuals app once. Never say they are blocked |
+| `POLYMARKET_DUTY_BROWSER_RESERVE` | Fewer than 10 of the owner's 40 daily browser sessions are left; those stay for chat |
 
 ## When a card fails
 
@@ -75,3 +86,20 @@ that card did not include (it had no "First time" line). Nothing moved: file it 
 with a new `--idempotency-key`.
 
 Any hint that says to file again means a new `--idempotency-key`, never the old one.
+
+## From a duty
+
+A duty runs the same `bet`, `sell` and `redeem` lines, never `deposit` or `withdraw`. It
+files no card when the owner armed a Polymarket allowance on the duty in the app (owner
+only; the Butler can only propose one):
+
+- **Budget:** the total the duty may spend on bets. Sell and redeem money does not refill it.
+  A bet that finished "not done" gives its dollars back; an unknown result counts as spent.
+- **Max per bet:** at least $1, at most the budget.
+- **Runs a day:** 1 to 24, default 6, over a rolling 24 hours.
+- **Markets:** optional list of market slugs; empty means any market.
+
+A duty sells or redeems only positions that same duty opened. A run that would need
+first-time account setup is refused: the owner places one bet from chat first. Each run's
+result posts in the duty's thread. `POLYMARKET_GEOBLOCKED` pauses the duty and tells the
+owner once.

@@ -1,7 +1,7 @@
 ---
 name: polymarket
-description: "Bet on Polymarket from Butler's wallet: find a market and its odds, then bet, sell, redeem, deposit or withdraw, each act a card the owner approves."
-version: 1.0.2
+description: "Bet on Polymarket from Butler's wallet: find a market and its odds, then bet, sell, redeem, deposit or withdraw. Chat acts are cards; a duty bets, sells or redeems inside an owner-set allowance."
+version: 1.1.0
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","redeem polymarket","withdraw from polymarket","deposit to polymarket"],"requires":{"bins":["acp","bevo-read","curl"]}}}
 ---
 
@@ -16,10 +16,12 @@ Your owner names **Polymarket** (a share pays $1 if its outcome happens) and wan
 - **Sell or claim** - "sell half my Yes", "cash out my win": steps 1, 3, 4 with `sell` or
   `redeem`.
 - **Withdraw** - "take my money out of Polymarket": steps 1, 3, 4 with `withdraw`.
+- **Automate** - "each morning, bet $1 if Yes is under 30¢": *In a duty* below.
 
 Not this skill: Hyperliquid perps (`acp trade`), Variational, Papertrade, or a bet your
-owner did not say is on Polymarket. Every act here is a card the owner approves; nothing
-moves without it. Polymarket may be off: relay the refusal.
+owner did not say is on Polymarket. In chat every act is a card the owner approves. A duty
+acts only inside the allowance its owner set (see *In a duty*). Polymarket may be off:
+relay the refusal.
 
 **No browser, ever.** polymarket.com is blocked in your browser. Reading markets is `curl`
 to Polymarket's public API; everything else is `bevo-read` and `acp polymarket`.
@@ -29,7 +31,7 @@ bevo-server does the rest after the owner approves.
 
 1. **Figures come only from this turn's reads and the card.** An unreadable account is not
    an empty one. Never work out a price, a payout, shares or a PnL yourself.
-2. **From chat only.** A duty cannot use Polymarket; the server refuses it.
+2. **Chat or duty.** In chat, every act is a card. In a duty, follow *In a duty* below.
 3. **A bet can lose all of it.** Say the bad case first, in their words: *"If Yes does not
    happen, the whole $2 is gone."* The card shows the worst price and the shares; tell them
    to read it before they approve.
@@ -41,10 +43,33 @@ bevo-server does the rest after the owner approves.
 
 1. **They chose it:** the market, the outcome and the dollar amount, in their own words.
    "You pick" is not a choice: ask.
-2. **You confirmed it:** you said back the exact market question and outcome name from
-   step 2, and they said yes to that market.
+2. **They said yes to your say-back.** In chat: say back the exact market question,
+   outcome name and dollars from step 2, then **end your reply and wait**. File only after
+   their next message says yes. Never say it back and file in the same reply, even when
+   they named the market themselves. In a duty: the owner's armed allowance and its market
+   list are the yes.
 3. **The read is fresh:** step 1 ran after their last answer (or its `asOf` is under 60 s
    old), so you know their cash and whether they already hold that market.
+
+### In a duty
+
+- A duty may only `bet`, `sell` and `redeem`, with the same commands. Never `deposit` or
+  `withdraw`: those are chat only.
+- No card per act only when the owner armed a **Polymarket allowance** on that duty: a
+  total budget, a max per bet, runs a day (default 6), and optionally a list of markets.
+  Sells and redeems do not refill the budget.
+- A duty sells or redeems only bets that same duty placed.
+- The first bet must happen from chat: it sets the account up ("First time").
+- The result posts in the duty's thread. Never file again to find out.
+
+**Proposing a duty.** Only the owner can set the allowance, in the app, on the duty. You
+describe it; they set it. Never say it is set. Say the bad case when filing: a duty asks
+no one before it bets. Example:
+
+> *"Each morning, if 'Will X happen?' Yes is under 30¢, I bet $1 on Yes, at most 3 runs a
+> day. Each bet can lose the whole $1. To let it run without a card, set a Polymarket
+> allowance on this duty in the app: budget $10, max $1 per bet, 3 runs a day, only this
+> market."*
 
 ## Procedure
 
@@ -69,7 +94,8 @@ bevo-server does the rest after the owner approves.
 
    GET only, never another host. Show each choice as its question, outcome names and
    prices in cents, and end date. Several fit: ask which. Then say back the one they chose,
-   exactly: *"Fed decision in October: 25 bps decrease, Yes at 64¢?"* Keep that market's
+   exactly, then wait for yes: *"Fed decision in October: 25 bps decrease, Yes at 64¢,
+   $2?"* Keep that market's
    `slug` (the market's own, not the event's) and the outcome name exactly as the API
    spells it. A market with `closed: true` or `acceptingOrders: false` takes no bet.
 
@@ -93,8 +119,9 @@ bevo-server does the rest after the owner approves.
    ```
 
    The outcome goes in double quotes (`--outcome "Team Liquid"`), never single quotes. A
-   `'` inside is fine (`--outcome "Don't Know"`); only a `"` or a line break is refused. The reply is an approval card in
-   this chat: tell your owner what it does, and to approve it in the app.
+   `'` inside is fine (`--outcome "Don't Know"`); only a `"` or a line break is refused. In chat the reply is an approval card:
+   tell your owner what it does, and to approve it in the app. In an armed duty it runs
+   with no card.
 
 4. [FIXED] Wait for the card's outcome; never file it again to find out:
 
@@ -124,9 +151,19 @@ Never guess a price.
 | --- | --- |
 | `POLYMARKET_NOT_ENABLED` | Not available on this account yet. Say so; don't retry. |
 | `POLYMARKET_SIGNER_NOT_READY` | Ask your owner to enable Butler's signer in the app, then file it again with a new key. |
-| `POLYMARKET_CHAT_ONLY` | You are in a duty. Polymarket is chat only; tell the owner in chat. |
+| `POLYMARKET_CHAT_ONLY` | An older server: this act is chat only. Tell the owner in chat. |
+| `POLYMARKET_DUTY_NOT_ARMED` | This duty has no Polymarket allowance. Ask the owner to set one on the duty in the app. |
+| `POLYMARKET_DUTY_OP` | Deposit and withdraw are chat only. Ask the owner in chat. |
+| `POLYMARKET_DUTY_MAX_BET` | Over the duty's max per bet. Don't retry bigger; the owner can raise it. |
+| `POLYMARKET_DUTY_BUDGET` | Budget used up; the owner got a note. Bet no more; sell and redeem still work. |
+| `POLYMARKET_DUTY_MARKET` | Market not on the duty's list. Don't retry; the owner can add it. |
+| `POLYMARKET_DUTY_RUNS` | Today's runs are used (rolling 24 h). Skip; try on a later run, never loop. |
+| `POLYMARKET_DUTY_NOT_OWN` | This duty did not open that position. Leave it; the owner can sell it from chat. |
+| `POLYMARKET_SETUP_NEEDED` | No account yet. The owner places one bet from chat first. |
+| `POLYMARKET_COUNTRY_STALE` | Owner's country check is over 7 days old. Ask them to open the Virtuals app once; never say they are blocked. |
+| `POLYMARKET_DUTY_BROWSER_RESERVE` | Browser sessions left today are kept for chat. Skip; try tomorrow. |
 | `POLYMARKET_BAD_COMMAND` | Fix the command from its hint (`references/commands.md`); nothing was filed. |
-| `POLYMARKET_GEOBLOCKED` | Not available in your owner's country; nothing was sent. Say so and stop. Never try anything else: no other country, no VPN. |
+| `POLYMARKET_GEOBLOCKED` | Not available in your owner's country; nothing was sent (a duty is paused). Say so and stop. Never try anything else: no other country, no VPN. |
 | `POLYMARKET_GEOBLOCK_UNCHECKED` | Their country could not be checked, or is unknown; nothing was sent. Never say they are blocked. Ask them to open the Virtuals app once, then file again with a new key. |
 | `POLYMARKET_READ_BUSY` | A read is still running. Wait, then read once more; never loop. Not an empty account. |
 | `POLYMARKET_UNAVAILABLE`, `POLYMARKET_RUN_IN_PROGRESS`, `POLYMARKET_BROWSER_UNAVAILABLE` | Could not run now (a deposit's bridge refusal is `POLYMARKET_UNAVAILABLE` too). Wait a minute, file once more with a new key; if refused again, stop and tell the owner. |
@@ -145,7 +182,8 @@ Never guess a price.
 - **Deposit:** at least $2, USDC on Base from Butler's wallet.
 - **Withdraw:** at least $3, back to Butler's wallet only, as USDC on Base.
 - **Bets and sells:** a bet is at least $1; otherwise Polymarket's own minimums. No other
-  cap: the owner's approval is the cap. Never add a limit your owner did not ask for.
+  cap: in chat the owner's approval is the cap, in a duty its allowance. Never add a
+  limit your owner did not ask for.
 - **Markets:** any Polymarket lists and that still takes orders.
 
 ## Say to the owner

@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.0
+
+- Duties can use Polymarket: `bet`, `sell` and `redeem` only, never `deposit` or
+  `withdraw`. No card per act when the owner armed a Polymarket allowance on the duty
+  (budget, max per bet, runs a day, optional markets). A duty sells or redeems only its own
+  bets. The first bet must happen from chat (account setup).
+- The Butler proposes the allowance in chat; the owner sets it on the duty in the app. The
+  Butler never says it is set. Example duty added.
+- Chat bets: say the market back, then end the reply and wait for "yes". Never say it back
+  and file in the same reply.
+- New refusal codes: `POLYMARKET_DUTY_NOT_ARMED`, `POLYMARKET_DUTY_OP`,
+  `POLYMARKET_DUTY_MAX_BET`, `POLYMARKET_DUTY_BUDGET`, `POLYMARKET_DUTY_MARKET`,
+  `POLYMARKET_DUTY_RUNS`, `POLYMARKET_DUTY_NOT_OWN`, `POLYMARKET_SETUP_NEEDED`,
+  `POLYMARKET_COUNTRY_STALE`, `POLYMARKET_DUTY_BROWSER_RESERVE`.
+- The account read is allowed from a duty.
+
 ## 1.0.2
 
 - The skill is now named `polymarket` (was `butler-polymarket-web`). The repo name is

@@ -1,6 +1,6 @@
 # Reading the Polymarket account
 
-One read, not a card: it moves nothing. It is refused from a duty. Within 60 s of a good
+One read, not a card: it moves nothing. A duty may read it too. Within 60 s of a good
 read, the server returns that same read again, with `asOf` saying when it was taken. It
 answers `POLYMARKET_READ_BUSY` only while another read is still running: wait, then read
 once more; never loop.
@@ -39,5 +39,4 @@ let the owner see the difference.
 ## When the read fails
 
 A non-zero exit, `POLYMARKET_READ_BUSY` or `POLYMARKET_READ_FAILED` is **not** an empty
-account. Say you could not check it, and give the server's `hint`. `POLYMARKET_CHAT_ONLY`
-means you are in a duty: the read is chat only.
+account. Say you could not check it, and give the server's `hint`.
