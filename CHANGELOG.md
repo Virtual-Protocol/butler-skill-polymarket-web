@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1 — 2026-10-23
+
+- Cash: step 4 reads it from Polygon (pUSD `balanceOf` the Deposit Wallet, public RPC) with a new `cash` reader mode. Before, cash was only on the site's top bar, so a balance check took 4 browser steps (72 s live). Deposit's "wait until it lands" and the "they have it" rule use it too.
+- Dropped the `value` call (positions already show each bet's worth), one duplicate failure row and one limit line, to stay under 13,000 chars.
+
 ## 0.3.0 — 2026-10-23
 
 - Bet: on a new account the first Buy opens Enable Trading instead of placing the order (`polymarket_trade` says so, virtuals-agent #257). Step 7 now says: sign Approve Tokens, telling the owner what the card must show, then place the order again.
