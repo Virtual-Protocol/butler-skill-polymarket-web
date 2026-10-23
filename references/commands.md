@@ -97,9 +97,13 @@ only; the Butler can only propose one):
   A bet that finished "not done" gives its dollars back; an unknown result counts as spent.
 - **Max per bet:** at least $1, at most the budget.
 - **Runs a day:** 1 to 24, default 6, over a rolling 24 hours.
-- **Markets:** optional list of market slugs; empty means any market.
+- **Markets:** optional list of market slugs; empty means any market. It applies to sell
+  and redeem too.
 
-A duty sells or redeems only positions that same duty opened. A run that would need
+An armed run answers status `accepted` with `auto: true` and files no card. A duty
+refusal is HTTP 403, 402, 429 or 409; only `POLYMARKET_RUN_IN_PROGRESS` (409) is worth
+one more try (new key). A duty sells or redeems only positions that same duty opened, and
+a `--percent` sell is of the duty's own shares. A run that would need
 first-time account setup is refused: the owner places one bet from chat first. Each run's
 result posts in the duty's thread. `POLYMARKET_GEOBLOCKED` pauses the duty and tells the
 owner once.

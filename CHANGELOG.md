@@ -15,6 +15,13 @@
   `POLYMARKET_DUTY_RUNS`, `POLYMARKET_DUTY_NOT_OWN`, `POLYMARKET_SETUP_NEEDED`,
   `POLYMARKET_COUNTRY_STALE`, `POLYMARKET_DUTY_BROWSER_RESERVE`.
 - The account read is allowed from a duty.
+- Never check approvals, allowances or the deposit wallet on chain: setup runs inside the
+  card's run. A failed card is reported as written; filing again is the owner's call.
+  Never refuse because earlier cards failed, never build a workaround or research the
+  relayer or keys.
+- Duty runs: `accepted` with `auto: true` (no card); refusals are 403/402/429/409 and
+  only `POLYMARKET_RUN_IN_PROGRESS` (409) is retryable; the market list covers sell and
+  redeem; a `--percent` sell is of the duty's own shares.
 
 ## 1.0.2
 

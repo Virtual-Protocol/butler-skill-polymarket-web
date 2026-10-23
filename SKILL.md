@@ -38,6 +38,12 @@ bevo-server does the rest after the owner approves.
 4. **The account is Butler's wallet's own.** The first bet, sell or redeem card sets it up
    (the card says "First time"). Never ask your owner for an email, a code, a password or a
    key.
+5. **Never check approvals, allowances or the deposit wallet on chain yourself.** Setup
+   happens inside the card's run on the server, so a zero allowance before filing is
+   expected.
+6. **A failed card: report it as written.** Filing again (new key) is the owner's call.
+   Never refuse because earlier cards failed. Never build your own workaround, and never
+   research the relayer or keys.
 
 ### Never file a bet without all three
 
@@ -57,19 +63,23 @@ bevo-server does the rest after the owner approves.
   `withdraw`: those are chat only.
 - No card per act only when the owner armed a **Polymarket allowance** on that duty: a
   total budget, a max per bet, runs a day (default 6), and optionally a list of markets.
-  Sells and redeems do not refill the budget.
-- A duty sells or redeems only bets that same duty placed.
+  Sells and redeems do not refill the budget. The market list applies to sell and redeem
+  too.
+- A duty sells or redeems only bets that same duty placed; `--percent` is of the duty's
+  own shares.
+- An armed run answers status `accepted` with `auto: true`: no card.
+- A duty refusal (HTTP 403, 402, 429 or 409) means skip this run. Only
+  `POLYMARKET_RUN_IN_PROGRESS` (409) is retryable: wait a minute, one try with a new key.
 - The first bet must happen from chat: it sets the account up ("First time").
-- The result posts in the duty's thread. Never file again to find out.
+- The result posts in the duty's thread.
 
 **Proposing a duty.** Only the owner can set the allowance, in the app, on the duty. You
 describe it; they set it. Never say it is set. Say the bad case when filing: a duty asks
 no one before it bets. Example:
 
-> *"Each morning, if 'Will X happen?' Yes is under 30¢, I bet $1 on Yes, at most 3 runs a
-> day. Each bet can lose the whole $1. To let it run without a card, set a Polymarket
-> allowance on this duty in the app: budget $10, max $1 per bet, 3 runs a day, only this
-> market."*
+> *"Each morning, if 'Will X happen?' Yes is under 30¢, I bet $1 on Yes. Each bet can
+> lose the whole $1. To run it with no card, set a Polymarket allowance on this duty in
+> the app: budget $10, max $1 per bet, 3 runs a day, only this market."*
 
 ## Procedure
 
@@ -120,8 +130,7 @@ no one before it bets. Example:
 
    The outcome goes in double quotes (`--outcome "Team Liquid"`), never single quotes. A
    `'` inside is fine (`--outcome "Don't Know"`); only a `"` or a line break is refused. In chat the reply is an approval card:
-   tell your owner what it does, and to approve it in the app. In an armed duty it runs
-   with no card.
+   tell your owner what it does, and to approve it in the app.
 
 4. [FIXED] Wait for the card's outcome; never file it again to find out:
 
@@ -155,9 +164,9 @@ Never guess a price.
 | `POLYMARKET_DUTY_NOT_ARMED` | This duty has no Polymarket allowance. Ask the owner to set one on the duty in the app. |
 | `POLYMARKET_DUTY_OP` | Deposit and withdraw are chat only. Ask the owner in chat. |
 | `POLYMARKET_DUTY_MAX_BET` | Over the duty's max per bet. Don't retry bigger; the owner can raise it. |
-| `POLYMARKET_DUTY_BUDGET` | Budget used up; the owner got a note. Bet no more; sell and redeem still work. |
+| `POLYMARKET_DUTY_BUDGET` | Budget used up; the owner got a note. Bet no more. |
 | `POLYMARKET_DUTY_MARKET` | Market not on the duty's list. Don't retry; the owner can add it. |
-| `POLYMARKET_DUTY_RUNS` | Today's runs are used (rolling 24 h). Skip; try on a later run, never loop. |
+| `POLYMARKET_DUTY_RUNS` | Today's runs are used. Skip; never loop. |
 | `POLYMARKET_DUTY_NOT_OWN` | This duty did not open that position. Leave it; the owner can sell it from chat. |
 | `POLYMARKET_SETUP_NEEDED` | No account yet. The owner places one bet from chat first. |
 | `POLYMARKET_COUNTRY_STALE` | Owner's country check is over 7 days old. Ask them to open the Virtuals app once; never say they are blocked. |
@@ -169,7 +178,7 @@ Never guess a price.
 | `POLYMARKET_UNAVAILABLE`, `POLYMARKET_RUN_IN_PROGRESS`, `POLYMARKET_BROWSER_UNAVAILABLE` | Could not run now (a deposit's bridge refusal is `POLYMARKET_UNAVAILABLE` too). Wait a minute, file once more with a new key; if refused again, stop and tell the owner. |
 | `POLYMARKET_BROWSER_BUDGET` | Daily budget spent. Don't retry today; tell the owner it works again tomorrow. |
 | `POLYMARKET_READ_FAILED` | Could not read Polymarket. Say you could not check it. |
-| A card failed with nothing sent | Give the reason as written; nothing moved. |
+| A card failed with nothing sent | Give the reason as written; nothing moved. Filing again is the owner's call. |
 | A card failed with "file again with a new key" | The account needed setup that card did not include. File it once more with a new key. |
 | A card failed with "check Polymarket before asking again" | Step 1; tell the owner what it shows. Never resend. |
 | `POLYMARKET_MARKET_CLOSED` | The market is not taking orders: say so. Offer `redeem` once it is redeemable. |
