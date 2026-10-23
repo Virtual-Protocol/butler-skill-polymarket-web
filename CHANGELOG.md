@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.8
+
+- Login: `browser_type_email` (`submit: true`) and `browser_type_code` with
+  `fromInbox` (virtuals-agent). The inbox polling, `extract-otp` and the email
+  read-back are gone from the skill: about 6 fewer steps. Needs the agent
+  build that has both tools.
+
+## 0.1.7
+
+- `acp email extract-otp` takes `--message-id <id>` (acp-cli 1.0.38); the bare
+  `<id>` form failed once on every login.
+
 ## 0.1.6
 
 - New account: fill "Choose a username" with the email's local part, tick the
