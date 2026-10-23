@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 — 2026-10-23
+
+- Step 10: log out (profile picture → Log out), checked with `polymarket_account`. Last time it took 98 steps with no step to follow.
+- Step 3 points at step 10 for a wrong account. Trimmed wording to stay under 13,000 characters; no rule changed.
+
 ## 0.2.1
 
 - Security fixes from an audit. Needs the agent build with `polymarket_account`.
