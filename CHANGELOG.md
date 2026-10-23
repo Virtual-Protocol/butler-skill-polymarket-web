@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3 — 2026-10-23
+
+- Withdraw: step 9 uses the new `polymarket_withdraw` API tool (virtuals-agent #259, bevo-server #1203): dry run, the owner's yes, then one card. It pays only the Butler's own wallet, as USDC on Base, through a bridge address the server fetches itself. Minimum $3. Needs both PRs deployed first.
+- Dropped the captcha failure row to stay under 13,000 chars (the "button not there after 3 tries" row covers it).
+
 ## 0.3.2 — 2026-10-23
 
 - Log out: one `polymarket_account` call with `logout: true` (virtuals-agent feat/pm-logout-tool). The model clicking the menu took 12 browser steps and 4m43s live, because one missed Logout click closed the menu. Needs that container image first.
