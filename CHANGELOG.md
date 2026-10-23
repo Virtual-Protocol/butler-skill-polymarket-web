@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.8 — 2026-10-23
+
+Checked every step against the live walkthrough and the tool code.
+
+- Deposit: go to `/portfolio` → **Deposit** → **Transfer Crypto** by URL, not by hunting the top bar. The address is the same on every EVM chain, so no chain dropdown (it opens outside the popup).
+- Bet: the `event` reader now prints each outcome's `market` slug, and step 6 passes it as `polymarket_trade`'s `market`. Before, the reader printed no market slug at all.
+- Log out: the real labels are **Open user menu** → **Logout**.
+
 ## 0.2.7 — 2026-10-23
 
 - Deposit: click **Cash** in the top bar, then **Deposit** (the path from the owner's live walkthrough). Live test: the Butler looped reload and reconnect looking for the button.
