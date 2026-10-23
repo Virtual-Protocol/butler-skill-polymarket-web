@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.7 — 2026-10-23
+
+- Deposit: click **Cash** in the top bar, then **Deposit** (the path from the owner's live walkthrough). Live test: the Butler looped reload and reconnect looking for the button.
+
 ## 0.2.6 — 2026-10-23
 
 - No Enable Trading popup: skip it; the site's Buy button opens it on the first `polymarket_trade` (read from the site's code). 0.2.5's "order panel button" guess was wrong.
