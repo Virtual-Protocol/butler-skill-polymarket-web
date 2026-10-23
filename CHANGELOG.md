@@ -3,6 +3,8 @@
 ## 0.4.0 — 2026-10-23
 
 - Tool names: the Polymarket tools are now generic site tools in the container (virtuals-agent refactor/site-tools): `polymarket_account` → `site_account`, `polymarket_trade` → `site_order`, `polymarket_withdraw` → `site_withdraw`. Each takes `site: "polymarket"`; inputs, checks and cards are otherwise unchanged. Needs that container image first: an older image has only the old names.
+- Deposit: step 5 is `site_account` with `deposit: {amountUsd}`. The container files one card on bevo-server's `POST /butler-exec/polymarket/deposit`, which looks the bridge address up itself, so the address never passes through the model and a page cannot swap it. The `bevo-send` line, the "address starting and ending like" check and `bevo-send` in `requires.bins` are gone. Needs that server route and the container image first.
+- Cash: step 4 is `site_account` with `cash: true` (read in code, no browser). The Polygon `curl` with the raw pUSD address (an address-lint error) and the reader's `cash` mode are gone. Body back under 12,000 chars.
 - Dropped the "never hold more than $50" rule: the owner did not ask for a cap, and every deposit still gets its own card. bevo-server drops its $50 per-withdraw cap too (fix/polymarket-no-withdraw-cap).
 
 ## 0.3.3 — 2026-10-23
