@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2 — 2026-10-23
+
+- Log out: one `polymarket_account` call with `logout: true` (virtuals-agent feat/pm-logout-tool). The model clicking the menu took 12 browser steps and 4m43s live, because one missed Logout click closed the menu. Needs that container image first.
+
 ## 0.3.1 — 2026-10-23
 
 - Cash: step 4 reads it from Polygon (pUSD `balanceOf` the Deposit Wallet, public RPC) with a new `cash` reader mode. Before, cash was only on the site's top bar, so a balance check took 4 browser steps (72 s live). Deposit's "wait until it lands" and the "they have it" rule use it too.
