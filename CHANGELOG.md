@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.6 — 2026-10-23
+
+- No Enable Trading popup: skip it; the site's Buy button opens it on the first `polymarket_trade` (read from the site's code). 0.2.5's "order panel button" guess was wrong.
+
 ## 0.2.5 — 2026-10-23
 
 - Failure table: a new session reconnects the wallet first; a new account with no Enable Trading popup finds it in a market's order panel; a button not found after 3 tries stops and tells the owner. Live test: 25 steps and 6m 24s of searching menus and guides.
