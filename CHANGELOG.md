@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3 — 2026-10-23
+
+- Step 3: an old or other account is logged out and the wallet login done in the same turn. Live test: the Butler said "logging out first" and ended its turn.
+
 ## 0.2.2 — 2026-10-23
 
 - Step 10: log out (profile picture → Log out), checked with `polymarket_account`. Last time it took 98 steps with no step to follow.
