@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.0
+
+Rewritten in the shape of the Variational skill: no browser at all. bevo-server runs every
+money act after the owner approves its card.
+
+- Reads: `bevo-read get /polymarket/account` (cash, positions, open orders). Market search
+  stays a public `curl` to `gamma-api.polymarket.com`, GET only (`references/markets.md`).
+- Money: `acp polymarket bet|sell|redeem|deposit|withdraw ... --idempotency-key <KEY>`,
+  one card each, then `bevo-read request <KEY> --route polymarket`.
+- The first money card on a new account also sets it up; no login, email or code steps.
+- `POLYMARKET_GEOBLOCKED`: say it is not available in the owner's country; never another
+  country or a VPN.
+- Limits: deposit at least $2, withdraw at least $3, no other cap (the $50 hold cap is gone).
+- Chat only; a duty is refused.
+- Dropped: the browser login, the Butler email, `bevo-send` deposits, the Python reader,
+  `cat`, `python3` and `bevo-send` from `requires.bins`.
+- New references: `commands.md`, `account.md`, `markets.md`.
+- Needs the server runner (`POST /butler-exec/polymarket`, route `polymarket`), the
+  container's `acp polymarket` group, and the registry validator knowing that group.
+
 ## 0.1.2
 
 - Login code: click Continue once, wait on the inbox without touching the page,
