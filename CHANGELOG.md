@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.5 — 2026-10-23
+
+- Failure table: a new session reconnects the wallet first; a new account with no Enable Trading popup finds it in a market's order panel; a button not found after 3 tries stops and tells the owner. Live test: 25 steps and 6m 24s of searching menus and guides.
+- Trimmed repeats (the 2¢ row is rule 4; the deposit-address row is step 5) to stay under 13,000 characters.
+
 ## 0.2.4 — 2026-10-23
 
 - Step 3: never click Convert or Auto-redeem; the server refuses their signatures (audit of the site's code). Shorter wording in steps 3 and 5; no rule changed.
