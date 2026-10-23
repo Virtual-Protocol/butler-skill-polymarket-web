@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 — 2026-10-23
+
+- Bet: on a new account the first Buy opens Enable Trading instead of placing the order (`polymarket_trade` says so, virtuals-agent #257). Step 7 now says: sign Approve Tokens, telling the owner what the card must show, then place the order again.
+
 ## 0.2.9 — 2026-10-23
 
 - Deposit: no browser. Send only to `polymarket_account`'s bridge `depositAddress`. The site's Deposit page is fun.xyz's checkout with its own address (live: page 0xeB8f…, bridge 0x53C9…, same Deposit Wallet), so 0.2.8's page comparison always stopped.
