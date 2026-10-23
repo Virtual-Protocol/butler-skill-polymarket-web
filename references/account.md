@@ -1,7 +1,8 @@
 # Reading the Polymarket account
 
-One read, not a card: it moves nothing. It is refused from a duty. When it answers
-`POLYMARKET_READ_BUSY`, wait and read again once; never loop.
+One read, not a card: it moves nothing. It is refused from a duty. It runs at most once a
+minute: when it answers `POLYMARKET_READ_BUSY`, wait a minute and read again once; never
+loop.
 
 ## `bevo-read get /polymarket/account`
 
@@ -11,18 +12,19 @@ One read, not a card: it moves nothing. It is refused from a duty. When it answe
 
 | Field | Means |
 | --- | --- |
-| `hasAccount` | `false` when Butler's wallet has no Polymarket account yet; the first deposit or bet card sets one up |
+| `hasAccount` | `false` when Butler's wallet has no Polymarket account yet; the first bet card sets one up (its card says "First time") |
 | `depositWallet` | the account's Polymarket wallet. Never send money to it yourself: `deposit` does that |
 | `cash` | dollars ready to bet or withdraw |
 | `positions[]` | each bet they hold, below |
-| `openOrders` | orders still resting on Polymarket. Bets here fill now or not at all, so this is normally empty; relay any as given |
+| `openOrders` | orders still resting on Polymarket. Bets and sells here fill now or not at all, so this is empty |
 
 ### A position
 
 | Field | Means |
 | --- | --- |
-| `market` | the market it is in; use it as `--market` for `sell` or `redeem` |
-| `outcome` | the outcome held, such as `Yes` or `Lakers`; use it as `--outcome` for `sell` |
+| `market` | the market's slug: exactly the value `--market` takes for `sell` or `redeem` |
+| `question` | the market's question; name the market to the owner by this, never by the slug |
+| `outcome` | the outcome held, such as `Yes` or `Team Liquid`; use it, in double quotes, as `--outcome` for `sell` |
 | `shares` | how many shares; each pays $1 if the outcome happens |
 | `avgPrice` | the average price paid per share, in dollars |
 | `value` | what the shares are worth now |

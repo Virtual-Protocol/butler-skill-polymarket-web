@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.0.1
+
+Matches the final server runner and container forwarder.
+
+- Outcomes go in double quotes: `--outcome "Team Liquid"`. No single quotes; a value with a
+  quote mark or a line break is refused.
+- `sell` is a fill-now order with a worst price on the card, like `bet`; `--shares` takes up
+  to 2 decimals, `--percent` 1 to 100. A bet is at least $1.
+- `POLYMARKET_READ_BUSY`: one account read a minute; wait, never loop.
+- A failed card that says "check Polymarket before asking again": read the account, never
+  resend.
+- New codes: `POLYMARKET_GEOBLOCK_UNCHECKED` (never say the owner is blocked),
+  `POLYMARKET_UNAVAILABLE`, `POLYMARKET_MARKET_CLOSED`, `POLYMARKET_NOTHING_TO_REDEEM`.
+  `POLYMARKET_GEOBLOCKED`: stop, never try anything else.
+- The first bet, sell or redeem card sets the account up and says "First time"; a deposit
+  is a plain send card.
+- polymarket.com is blocked in the Butler's browser.
+- `positions[].market` is the slug `--market` takes; positions also carry `question`.
+
 ## 1.0.0
 
 Rewritten in the shape of the Variational skill: no browser at all. bevo-server runs every

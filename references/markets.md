@@ -1,7 +1,7 @@
 # Finding the market and the outcome
 
 Market data is public: `curl` to `https://gamma-api.polymarket.com`, GET only, no key.
-It moves nothing and files no card. Never open polymarket.com in the browser, and never
+It moves nothing and files no card. polymarket.com is blocked in your browser, and never
 send anything to Polymarket yourself: bets go only through `acp polymarket`.
 
 ## The queries
@@ -33,11 +33,12 @@ Two shapes, and they read differently:
 
 1. **One market, named outcomes.** A game: the market `nba-lac-lal-2026-10-23` has the
    outcomes `Clippers` and `Lakers`. "Bet on the Lakers" is
-   `--market nba-lac-lal-2026-10-23 --outcome Lakers`.
+   `--market nba-lac-lal-2026-10-23 --outcome "Lakers"`. A name with a space stays one
+   value in double quotes: `--outcome "Team Liquid"`.
 2. **Many markets, Yes or No each.** "Fed decision in October" holds one market per
    choice: `25 bps decrease`, `No change`, and so on, in `groupItemTitle`. Each has the
    outcomes `Yes` and `No`. "Bet the Fed cuts 25" is the `25 bps decrease` market's own
-   `slug` with `--outcome Yes`. "Bet against it" is `--outcome No` on the same market.
+   `slug` with `--outcome "Yes"`. "Bet against it" is `--outcome "No"` on the same market.
 
 An event can hold side markets too ("Game 1 Winner", "team to score first"). Read
 `question` and `groupItemTitle`, never guess from the slug.
@@ -68,7 +69,8 @@ them: they are all but settled.
 3. Say back the one they chose, exactly, and wait for yes: *"Lakers vs Clippers tonight:
    Lakers at 58¢, $5?"*
 4. Keep the market `slug` and the outcome name for `SKILL.md` step 3. If their outcome is
-   not one of the market's two names, ask; never map it yourself.
+   not one of the market's two names, ask; never map it yourself. A name holding a quote
+   mark (`'` or `"`) cannot be filed: tell the owner, never respell it.
 
 The owner may want to look at it: the event page is
 `https://polymarket.com/event/<EVENT_SLUG>`. Give them the link; never open it yourself.
