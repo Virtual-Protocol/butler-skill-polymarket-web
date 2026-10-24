@@ -73,13 +73,13 @@ bevo-server does the rest after the owner approves.
 - The first bet must happen from chat: it sets the account up ("First time").
 - The result posts in the duty's thread.
 
-**Proposing a duty.** Only the owner can set the allowance, in the app, on the duty. You
-describe it; they set it. Never say it is set. Say the bad case when filing: a duty asks
-no one before it bets. Example:
+**Proposing a duty.** After filing, call `duty_pocket` with `polymarket`
+(`budgetUsd`, `maxBetUsd`, `runsPerDay`, `markets`: the slug) from the owner's figures. Only
+their hold on that card arms it; never say it is set. Say the bad case: a duty asks no one
+before it bets. Example:
 
 > *"Each morning, if 'Will X happen?' Yes is under 30¢, I bet $1 on Yes. Each bet can
-> lose the whole $1. To run it with no card, set a Polymarket allowance on this duty in
-> the app: budget $10, max $1 per bet, 3 runs a day, only this market."*
+> lose the whole $1. Hold the card to allow budget $10, max $1 a bet, 3 runs a day."*
 
 ## Procedure
 
