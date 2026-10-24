@@ -107,7 +107,13 @@ one more try (new key).
 **Count a bet as spent only when it may have run.** Any answer with a `code`, even one this
 page does not list, means nothing was sent: skip the run and do not count it. Only no
 answer at all, unreadable output or a timeout is unclear, and only that counts as spent.
-Duty code must not keep its own list of "known" codes and treat the rest as unclear. A duty sells or redeems only positions that same duty opened, and
+Duty code must not keep its own list of "known" codes and treat the rest as unclear.
+
+**A key with a `code` answer is used up.** The server stores that answer under the key, so
+sending the same key again only replays the old refusal, even after the owner fixed the
+cause (held the allowance, opened the app). Duty code that saves a bet's key before sending
+must clear it after any answer with a `code`, so the next check makes a new key. Keep the
+same key only after no answer or a timeout. A duty sells or redeems only positions that same duty opened, and
 a `--percent` sell is of the duty's own shares. A run that would need
 first-time account setup is refused: the owner places one bet from chat first. Each run's
 result posts in the duty's thread. `POLYMARKET_GEOBLOCKED` pauses the duty and tells the

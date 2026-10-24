@@ -68,8 +68,8 @@ bevo-server does the rest after the owner approves.
 - A duty sells or redeems only bets that same duty placed; `--percent` is of the duty's
   own shares.
 - An armed run answers status `accepted` with `auto: true`: no card.
-- Any answer with a `code` sent nothing: skip the run, never count it as spent. Only no
-  answer or a timeout is unclear. Retry only `POLYMARKET_RUN_IN_PROGRESS`: once, new key.
+- Any answer with a `code` sent nothing: not spent, and its key is used up, so the next
+  try needs a new key. Only no answer or a timeout is unclear: resend that, same key.
 - The first bet must happen from chat: it sets the account up ("First time").
 - The result posts in the duty's thread.
 

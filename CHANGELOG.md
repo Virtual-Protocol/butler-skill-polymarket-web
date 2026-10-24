@@ -17,6 +17,8 @@
 - The account read is allowed from a duty.
 - A duty answer with any `code` sent nothing: never count it as spent. Only no answer or
   a timeout is unclear.
+- A key that got an answer with a `code` is used up: the next try uses a new key, or it
+  only replays the old refusal.
 - Never check approvals, allowances or the deposit wallet on chain: setup runs inside the
   card's run. A failed card is reported as written; filing again is the owner's call.
   Never refuse because earlier cards failed, never build a workaround or research the
