@@ -15,6 +15,8 @@
   `POLYMARKET_DUTY_RUNS`, `POLYMARKET_DUTY_NOT_OWN`, `POLYMARKET_SETUP_NEEDED`,
   `POLYMARKET_COUNTRY_STALE`, `POLYMARKET_DUTY_BROWSER_RESERVE`.
 - The account read is allowed from a duty.
+- A duty answer with any `code` sent nothing: never count it as spent. Only no answer or
+  a timeout is unclear.
 - Never check approvals, allowances or the deposit wallet on chain: setup runs inside the
   card's run. A failed card is reported as written; filing again is the owner's call.
   Never refuse because earlier cards failed, never build a workaround or research the

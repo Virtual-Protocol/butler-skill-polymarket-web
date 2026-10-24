@@ -68,8 +68,8 @@ bevo-server does the rest after the owner approves.
 - A duty sells or redeems only bets that same duty placed; `--percent` is of the duty's
   own shares.
 - An armed run answers status `accepted` with `auto: true`: no card.
-- A duty refusal (HTTP 403, 402, 429 or 409) means skip this run. Only
-  `POLYMARKET_RUN_IN_PROGRESS` (409) is retryable: wait a minute, one try with a new key.
+- Any answer with a `code` sent nothing: skip the run, never count it as spent. Only no
+  answer or a timeout is unclear. Retry only `POLYMARKET_RUN_IN_PROGRESS`: once, new key.
 - The first bet must happen from chat: it sets the account up ("First time").
 - The result posts in the duty's thread.
 
