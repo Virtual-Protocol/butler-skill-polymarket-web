@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.16
+
+- Withdraw skipped the question: the owner wrote "withdraw all my cash" and
+  the Butler took that as the yes. Step 9b now says always ask, then wait;
+  the request is not the yes. Security rule 5 says the yes must answer
+  your question.
+- Step 9g ends with "Then reply; no other checks", so it stops reading
+  positions after the withdraw.
+- Dropped the "daily budget" line (the failure table already covers it)
+  and a few words to fit the cap.
+
 ## 0.1.15
 
 - Withdraw got stuck 5+ min on the token dropdown: it ran a form check

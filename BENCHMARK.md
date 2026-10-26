@@ -12,6 +12,8 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Login (first) | 0.1.9 | 2m 50s | — | logged in | First click list (a–g). About 4x faster. |
 | 2026-10-26 | Deposit $3 | 0.1.10 | 6m 00s | 24 | no card | Re-checked login, opened the chain menu, then tried to decode the QR picture and `pip install` a QR reader. |
 | 2026-10-26 | Deposit $3 | 0.1.11 | 1m 16s | 6 | card 5012 | Not a fair run: skipped Transfer Crypto and reused an address it remembered. Led to the "read fresh every time" rule. |
+| 2026-10-26 | Withdraw $3 | 0.1.14 | 5m 10s+ | — | stopped by owner | Stuck on the Receive token dropdown: checked the form early, then clicked USDC again "to be sure". |
+| 2026-10-26 | Withdraw $3 (all) | 0.1.15 | 4m 55s | 16 | done, $3.00 USDC on Base to `0x6279…ea1c` | Skipped the yes/no question (took "withdraw all" as the yes). Read positions after, found the Lula win. |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 
 ## Where the time still goes (deposit, 0.1.12)
