@@ -15,6 +15,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Withdraw $3 | 0.1.14 | 5m 10s+ | — | stopped by owner | Stuck on the Receive token dropdown: checked the form early, then clicked USDC again "to be sure". |
 | 2026-10-26 | Withdraw $3 (all) | 0.1.15 | 4m 55s | 16 | done, $3.00 USDC on Base to `0x6279…ea1c` | Skipped the yes/no question (took "withdraw all" as the yes). Read positions after, found the Lula win. |
 | 2026-10-26 | Redeem won bet (Lula Yes, 13 shares) | 0.1.16 | 3m 33s | 14 | done, cash $0.00 → $13.04 | Old prose step 8, no click list. Owner OK with the time. Did not ask yes/no first ("can you help redeem the win" taken as the yes). |
+| 2026-10-26 | Withdraw $5 | 0.1.17 | ~5m | 15 | done, cash $13.04 → $8.04 | Asked first (vague: "confirm the $5 site withdrawal"). 3 observes before clicks, 3 early form reads, Base picked 3 times. |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 
 ## Where the time still goes (deposit, 0.1.12)
