@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.26
+
+- Step 10: log out. Open the portfolio, click the picture, then `browser_act`
+  "click Log out in the open menu" at once. Log out sits below the language
+  row, off screen, so the Butler used to loop looking for it. If the click
+  misses: scroll the open menu down, click once more.
+- Trims to stay under the 12,000-char cap (no rule removed).
+
 ## 0.1.25
 
 - The Platforms row updates only after a fund or a withdraw, never after
