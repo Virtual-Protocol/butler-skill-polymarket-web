@@ -58,3 +58,77 @@ after the card                  4 steps   (status check, Platforms watcher duty)
 
 Next cuts to try: stop after the card is filed (no status or duty checks in the
 same turn), and one geoblock retry at most before saying so.
+
+## Planned: wallet login (not built yet, 2026-10-26)
+
+Bosses want a wallet login instead of email, Browserbase only (no Polymarket API
+for money, no Builder key, no 100-a-day relayer limit). Plan: put a wallet into the
+Butler's own Browserbase page (`browser_connect_wallet`, generic, no site names);
+every signature the page asks for goes to `POST /butler-exec/execute`, where
+bevo-server checks it, files an owner card, and signs once the owner taps. The key
+never enters the browser. Builds on virtuals-agent PR #250 and bevo-server PR #1194
+(both merged 2026-10-23, later removed by #261 / #1208).
+
+Where each step happens:
+
+```
+[BB]   Browserbase: the Butler's browser on polymarket.com
+[API]  Polymarket public API (read only, from the Butler's shell)
+[SRV]  bevo-server (checks + signs with the key)
+[APP]  owner's phone (taps the card)
+```
+
+**1. Login (first time)**
+
+```
+[BB]   browser_connect_wallet: wallet put into the page
+[BB]   open polymarket.com → Log in → "Rabby" → connect
+[BB]   page asks: "sign in"
+[SRV]  checks it is Polymarket's sign-in → files card
+[APP]  owner taps
+[SRV]  signs → signature back to [BB]
+[BB]   username / terms → logged in
+```
+
+**2. Deposit**
+
+```
+[BB]   Deposit → Transfer Crypto → read address
+[SRV]  bevo-send → files card
+[APP]  owner taps → [SRV] sends USDC
+```
+
+**3. Bet (first time adds 2 cards)**
+
+```
+[API]  find the market + its url
+[BB]   open url → Yes → +$1 +$1 → Buy Yes
+[BB]   first time only: Enable Trading
+         [SRV] ClobAuth card  → [APP] tap → [SRV] sign → [BB]
+         [SRV] approvals card → [APP] tap → [SRV] sign → [BB]
+[BB]   page asks to sign the order
+[SRV]  checks: own wallet, amount, cap → card "Buy, pay $2, ≥2.10 shares"
+[APP]  owner taps
+[SRV]  signs → [BB] page sends the order to Polymarket
+```
+
+**4. Sell:** same as a bet: [BB] Sell → Max → Sell, then [SRV] card → [APP] tap →
+[SRV] sign → [BB].
+
+**5. Claim / Withdraw (only if added; #1194 refused both)**
+
+```
+[BB]   Portfolio → Redeem   (or Withdraw → address → Max)
+[SRV]  checks: redeem only / bridge address leads to Butler's wallet → card
+[APP]  tap → [SRV] sign → [BB] page sends it
+```
+
+**6. Logout:** [BB] picture → Log out.
+
+**Rule:** all clicking is in [BB], every signature is checked and signed in [SRV],
+and the owner only taps in [APP]. The key never enters [BB].
+
+Expected speed: the same clicks as the email flow, plus the owner's tap per card.
+Login ~2 min + 1 tap; first bet ~5 min + 3 taps; next bet ~4 min + 1 tap; sell
+~3 min + 1 tap. Making the order card the owner's yes (no chat question first)
+would save ~1.5 min per bet and sell.
