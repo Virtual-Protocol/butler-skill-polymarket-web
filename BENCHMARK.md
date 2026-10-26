@@ -24,6 +24,24 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Bet $1 (Fed No change Yes) | 0.1.24 | ask 1m 25s / 7; bet 5m 16s / 15 | 22 | filled ~1.05 shares at 95¢, cash $2.60 → $1.60 | Owner: OK. No Amount fight. Lost: first submit click missed (+2 looks), 2 checks after, then 5 steps of Platforms-row bookkeeping (~1.5 min). |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 
+## Summary (2026-10-26, end of day)
+
+Best run per action, first try → best. Target 1–2 min, 2–3 min acceptable.
+
+| Action | First | Best | Skill | Status |
+| --- | --- | --- | --- | --- |
+| Login | 11m 50s | 2m 50s | 0.1.9 | acceptable |
+| Deposit | 6m 00s | 2m 45s | 0.1.12 | acceptable |
+| Withdraw | 5m 10s+ (stuck) | 4m 15s | 0.1.18 | owner OK for now |
+| Claim | — | 3m 33s | 0.1.16 (no click list) | owner OK; click list (0.1.17) untested |
+| Search + ask (bet) | ~1–2m | 1m 25s | 0.1.23 | in target |
+| Bet (after yes) | 7m 28s | 5m 16s | 0.1.24 | owner OK; 0.1.25 should be ~2.5–3m |
+| Sell (ask + click) | 11m+ (stuck) | ~4m (52s + 3m) | 0.1.23 | owner OK |
+
+Floor: about 20 s per browser step (each click is a model call in the browser
+helper), so ~7 steps ≈ 2.5 min. Under 2 min needs a container change (Jev or
+fixed clicks), not skill wording.
+
 ## Where the time still goes (deposit, 0.1.12)
 
 ```
