@@ -43,6 +43,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-27 | Log out ("can you logout from polymarket") | server #1244 (staging), skill 0.2.5+ | 7s | 1 | logged out: server's saved login cleared, no card | `acp site polymarket logout`, no browser. Was 2m 26s / 11 steps on the click flow (0.1.26), and looped on 0.2.4. Next Polymarket run logs in again (cold). |
 | 2026-10-27 | Deposit $3 (card 5090) | server #1246 (staging 7b034a9a) | tap → fail 63s | — | not done, nothing sent | Got past Transfer Crypto. The address sits in a read-only box (input), not in the page text. Fixed in server #1248. |
 | 2026-10-27 | Log in (card 5091), cold | server #1247 (staging a8a3e017), skill 0.2.7 | tap 13s + run 55s | — | **done**: logged in, login kept | `acp site polymarket login`, one card, no money. Butler ended its turn at 14s ("tell me when you've held it") instead of waiting for the result; the owner had to say "Done". |
+| 2026-10-27 | Bet $1 (Mbappé Yes, card 5092), warm (right after `login`) | server #1247 (staging a8a3e017), skill 0.2.7 | card in 11s; tap 8s + run 56s; ~1m 15s total | 2 | **done**: bought Yes for at most $1.00 (~4.7 shares at 21.1¢) | Warm bet: run 56s vs the cold bet's 2m 14s total. Server posted the result note at 18:20:35, 0.3s after done. Between the tap and that note the chat shows nothing, and Butler said "tell me once you've held it". |
 
 ## Summary (2026-10-26, end of day)
 
