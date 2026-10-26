@@ -31,6 +31,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Log out | 0.1.26 | 2m 26s | 11 | logged out; header shows Log in / Sign up | Before 0.1.26 it looped: Log out sits below the language row, off screen. Now `browser_act` clicks it directly. Still ~7 steps over the 3–4 planned. |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 | 2026-10-26 | Deposit $3, same chat as failed card 5074 | 0.2.2 | 4m 41s / 24 to the card; 1m 34s / 5 after the tap; ~6m 15s total | 29 | card 5077 (plain send), $3 landed, cash $0.00 → $3.00 | **Not the server path.** No `acp site polymarket deposit` call. Butler took the backup it had offered after 5074 in this chat: logged in by hand in its own browser, read the deposit address, then `bevo-send`. Server log: `positions` 15:34:45, send card 15:39:14, `positions` twice after. Server deposit (#1238) still untested. |
+| 2026-10-26 | Bet $1 (Mbappé Ballon d'Or Yes), new chat | 0.2.2 | card in 59s; failed ~1m 12s after the tap | — | card 5080 not done, nothing bought | **First server-path bet.** Card in 59 s (no browser before the card). After the tap: "Enable Trading steps did not finish (the page shows: Close)": the server gave up while the API-key Sign was still being answered. Fixed in server #1239. |
 
 ## Summary (2026-10-26, end of day)
 

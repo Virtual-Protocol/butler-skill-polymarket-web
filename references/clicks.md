@@ -20,8 +20,9 @@ stop. **Never use another country to get around it.**
 a. `browser_navigate` to `https://polymarket.com`. See: **Log in** on top.
    Else **Cash** or **Portfolio**: you are in; go to g.
 b. `browser_connect_wallet`, once. Never an email.
-c. Click **Log in**, then **Rabby** (often under **More methods**; never the
-   MetaMask tile). Missing: reload once, click again. "Connector not
+c. Click **Log in**, then **Rabby** (often under **More methods**, or under
+   **Connect Wallet/Social** on the other log-in window; never the MetaMask
+   tile). Missing: reload once, click again. "Connector not
    found": **Back**, wait 2 s, **Rabby** again (twice at most).
 d. A sign-in card. Say once: *"Tap the card in your app."* Every ~20 s,
    `browser_connect_wallet`: last request's `outcome`. Signed: go on.

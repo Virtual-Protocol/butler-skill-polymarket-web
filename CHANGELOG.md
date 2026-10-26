@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.3
+
+- Step 4 (bet): send the owner the question, price and about how many
+  shares **before** `acp site polymarket bet`, which waits for the tap. The
+  card stays the yes; no extra question.
+- Backup clicks B1c: Rabby can also sit under **Connect Wallet/Social**.
+
 ## 0.2.2
 
 - Step 9: a new account's one-time **Enable Trading** (deploy, API keys,
