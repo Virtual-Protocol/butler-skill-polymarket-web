@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7
+
+- Log in (step 12) is one command, `acp site polymarket login` (server
+  #1247): one card, no money; it keeps the login for the next command.
+  Before, Butler ran `positions` (no browser) and called it a log-in.
+
 ## 0.2.6
 
 - Removed the $50 cap on what Butler holds on Polymarket (owner's call,
