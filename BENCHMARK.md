@@ -40,6 +40,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-27 | Bet $1 (Mbappé Yes), cold (first run on the kept login) | server #1244 (staging ef06dd04) | 2m 14s | — | **done**: 5.18 shares at worst 19.7¢ (shown 17.8¢), cash $3.00 → $1.98 | First server-path bet filled from chat. Its first try had failed on the geoblock check (card 5085, before the retry fix). Butler's reply ended with "well inside your $50 cap" (skill security 5). |
 | 2026-10-27 | Sell all (5.18 Mbappé Yes), warm (right after the cold bet) | server #1244 (staging ef06dd04), skill 0.2.5 or older | 1m 36s | 3 | **done**: sold at worst 18.2¢, ~$0.97 back, cash $1.98 → $2.95 | 38 s faster than the cold bet (2m 14s); best click-flow sell was 3m 00s. Butler then posted the same result a 2nd time (1:43 AM), and both still named the $50 cap (skill not yet reinstalled to 0.2.6). |
 | 2026-10-27 | Deposit $3 (card 5089) | server #1244 (staging ef06dd04) | tap → fail 55s | — | not done, nothing sent, cash $2.95 | Button label is now "Transfer Crypto No limit • Instant"; the exact match missed it. Fixed in server #1246. Butler offered the backup clicks (asks first, as the skill says). |
+| 2026-10-27 | Log out ("can you logout from polymarket") | server #1244 (staging), skill 0.2.5+ | 7s | 1 | logged out: server's saved login cleared, no card | `acp site polymarket logout`, no browser. Was 2m 26s / 11 steps on the click flow (0.1.26), and looped on 0.2.4. Next Polymarket run logs in again (cold). |
 
 ## Summary (2026-10-26, end of day)
 
@@ -50,7 +51,7 @@ Best run per action, first try → best. Target 1–2 min, 2–3 min acceptable.
 | Login | 11m 50s | 2m 50s | 0.1.9 | acceptable |
 | Deposit | 6m 00s | 2m 45s | 0.1.12 | acceptable |
 | Withdraw | 5m 10s+ (stuck) | 4m 15s | 0.1.18 | owner OK for now |
-| Log out | looped (stuck) | 2m 26s | 0.1.26 | acceptable |
+| Log out | looped (stuck) | 7s (server `logout`, 1 step); click flow 2m 26s | 0.2.5 + server #1244 | in target |
 | Claim | — | 3m 33s | 0.1.16 (no click list) | owner OK; click list (0.1.17) untested |
 | Search + ask (bet) | ~1–2m | 1m 25s | 0.1.23 | in target |
 | Bet (after yes) | 7m 28s | 3m 55s | 0.1.25 | owner OK; ~4 steps lost to the order-guard refusing Buy Yes; fill confirmed |
