@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.6
+
+- Removed the $50 cap on what Butler holds on Polymarket (owner's call,
+  2026-10-27). Every bet, sell, claim, fund and withdraw still needs the
+  owner's tap on its card.
+
 ## 0.2.5
 
 - Log out (step 11) is one command, `acp site polymarket logout` (server
