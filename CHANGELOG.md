@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+
+- Step 2: when several markets fit, the Butler asks Jev (`decide`, one
+  choice over the rows' titles + "none of these") and uses the top pick at
+  0.7 or more; otherwise, or without the tool, it asks the owner. Jev never
+  moves money: the card still asks.
+
 ## 0.2.0
 
 - Main path is now the server's `acp site polymarket <action>` command
