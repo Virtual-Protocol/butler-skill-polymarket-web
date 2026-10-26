@@ -41,6 +41,8 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-27 | Sell all (5.18 Mbappé Yes), warm (right after the cold bet) | server #1244 (staging ef06dd04), skill 0.2.5 or older | 1m 36s | 3 | **done**: sold at worst 18.2¢, ~$0.97 back, cash $1.98 → $2.95 | 38 s faster than the cold bet (2m 14s); best click-flow sell was 3m 00s. Butler then posted the same result a 2nd time (1:43 AM), and both still named the $50 cap (skill not yet reinstalled to 0.2.6). |
 | 2026-10-27 | Deposit $3 (card 5089) | server #1244 (staging ef06dd04) | tap → fail 55s | — | not done, nothing sent, cash $2.95 | Button label is now "Transfer Crypto No limit • Instant"; the exact match missed it. Fixed in server #1246. Butler offered the backup clicks (asks first, as the skill says). |
 | 2026-10-27 | Log out ("can you logout from polymarket") | server #1244 (staging), skill 0.2.5+ | 7s | 1 | logged out: server's saved login cleared, no card | `acp site polymarket logout`, no browser. Was 2m 26s / 11 steps on the click flow (0.1.26), and looped on 0.2.4. Next Polymarket run logs in again (cold). |
+| 2026-10-27 | Deposit $3 (card 5090) | server #1246 (staging 7b034a9a) | tap → fail 63s | — | not done, nothing sent | Got past Transfer Crypto. The address sits in a read-only box (input), not in the page text. Fixed in server #1248. |
+| 2026-10-27 | Log in (card 5091), cold | server #1247 (staging a8a3e017), skill 0.2.7 | tap 13s + run 55s | — | **done**: logged in, login kept | `acp site polymarket login`, one card, no money. Butler ended its turn at 14s ("tell me when you've held it") instead of waiting for the result; the owner had to say "Done". |
 
 ## Summary (2026-10-26, end of day)
 
