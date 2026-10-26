@@ -1,5 +1,9 @@
 # Speed log
 
+**0.2.0 (server `acp site polymarket` command): timings are not measured yet.**
+Every row below is the 0.1.x click flow in the Butler's own browser, which is
+now only the backup (`references/clicks.md`).
+
 Browser-only flow (Browserbase), test Butler `01a01889-…415c` on staging, image
 `virtuals-agent:polymarket-browser-test`. Time = the app's "Worked for", from the
 owner's message to the Butler's last step.

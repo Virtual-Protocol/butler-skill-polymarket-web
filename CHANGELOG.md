@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.2.0
+
+- Main path is now the server's `acp site polymarket <action>` command
+  (`positions`, `bet`, `sell`, `redeem`, `withdraw`, `deposit`; `acp site
+  status <key>` for a run still waiting). bevo-server does the clicks in its
+  own fresh, logged-out browser; the Butler runs one command, waits up to
+  100 s, and reports. It never opens a browser, logs in or logs out for it.
+- The card is the owner's yes: no yes/no question in chat first. The Butler
+  still asks for what is missing (market, outcome, dollars).
+- Step 9 says what each final status means: `done`, `not_done`, `unknown`,
+  `rejected`, `failed`, plus `still <status>` and `CODE: message` refusals.
+- Fallback rule: the 0.1.30 click steps run ONLY after `not done:` (nothing
+  was sent), after a new chat yes, and never in a duty. Never after
+  `outcome unknown` (the order may have gone through), `rejected`,
+  `failed` or a refusal like `SITE_GEOBLOCKED` / `SITE_NOT_ENABLED`.
+- The click steps moved to `references/clicks.md` (B1-B7). The backup
+  fund's `bevo-send` stays in SKILL.md step 10, as the validator wants
+  money commands in a [FIXED] step of SKILL.md.
+- Duties: `bet`, `sell`, `redeem` only, inside the owner's allowance, no
+  card; `withdraw` and `deposit` are refused; never the backup.
+- The reader's `event` rows now print `market <slug>`, the `--market` value.
+- The `acp site` commands are written inline, not in `sh` blocks: the hub
+  validator does not list the `site` acp group yet.
+
 ## 0.1.30
 
 - Logout (10) ends on one look: **Log in** on top means logged out; reply
