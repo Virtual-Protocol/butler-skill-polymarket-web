@@ -35,6 +35,8 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-27 | Log out, new chat | 0.2.3 | 1m 38s | 13 | correct: "not logged in, nothing to log out" | Server path keeps no login, and its own browser was already logged out. It opened its browser to check and also read positions: both extra. |
 | 2026-10-27 | Log in (Butler's own browser) | 0.2.3 | 42s | 6 | logged in, header Portfolio $5.61 / Cash $3.00 | No sign-in card: injecting the wallet (Rabby look) brought back the saved Polymarket session from the earlier backup deposit, so the page asked for no new signature. Not the server path (that keeps no login). |
 | 2026-10-27 | Bet $1 (Mbappé Yes), server run on Mac, test wallet | server #1241 | 21s (server run only, no chat/card) | — | **done**: 3.69 shares at worst 28.7¢ | First filled order on the server path. Login → Enable Trading API-key sign → Buy → Terms of Use pop-up → Accept → Buy again → order signed (CTF Exchange v2). Cards 5080 and 5084 failed on the steps fixed by #1239–#1241. |
+| 2026-10-27 | Trending ("what's trending on polymarket?"), new chat | site-command (version not checked) | 10s | 3 | top 10 by 24h volume, read 17:30 UTC | Public data, no browser, no card. Old best for search + ask was 1m 25s. |
+| 2026-10-27 | Positions ("show my polymarket") | site-command (version not checked) | 9s (+1s follow-up line) | 2 (+1) | $3.00 cash, NATO x Russia Yes 15.7894 sh worth $2.61 | `acp site polymarket positions`, no browser. Extra step: a 1-step "anything you want done?" offer after. |
 
 ## Summary (2026-10-26, end of day)
 
