@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.14
+
+- Withdraw: two explicit stops so the Butler never improvises. Step f: the
+  address box can't be read back: stop, never a screenshot or a script.
+  Step g: the Withdraw click is refused or does nothing: stop, never
+  another way.
+- Dropped a Limits line that repeated "the account is yours", and shortened
+  "your owner only answers yes or no", to fit the cap.
+
 ## 0.1.13
 
 - Withdraw (step 9) is a click list a-g from the 2026-10-23 walkthrough:
