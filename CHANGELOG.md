@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.10
+
+- A bet with a time or schedule ("in 3 minutes", "every day") becomes a
+  duty; nothing runs from chat. The duty's code tops up short cash before
+  every bet, even when the owner did not ask, and Butler tells the owner to
+  set the duty's Polymarket limit.
+
 ## 0.2.9
 
 - In a duty: every `acp site polymarket` action runs inside the owner's
