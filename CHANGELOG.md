@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.25
+
+- The Platforms row updates only after a fund or a withdraw, never after
+  a bet, sell or claim (those only swap cash and shares). The 0.1.24 bet
+  spent 5 steps (~1.5 min) on it. Owner's call, 2026-10-26.
+- Buy and sell click with `browser_act` and the button's exact words
+  ("click the blue Buy Yes button"): the 0.1.24 bet's first, vaguer
+  submit click missed and cost 3 steps. After the click, one check only.
+
 ## 0.1.24
 
 - Bet turn on 0.1.23 ($2 Fed No change): 4+ min spent typing into
