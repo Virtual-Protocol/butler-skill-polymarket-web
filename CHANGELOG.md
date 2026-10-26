@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.10
+
+- Fund (step 5) is a click list a-e like login: Deposit, Transfer Crypto,
+  read the one EVM address and the $3 Base minimum, keep the pop-up open,
+  send the `bevo-send` card, watch the pop-up's balance update by itself.
+  From the 2026-10-23 walkthrough (the chain menu is not needed).
+- Trimmed two lines that repeated other rules, to stay under 12,000 chars.
+
 ## 0.1.9
 
 - Login (step 3) is now a click list a-g: each line says what to click or
