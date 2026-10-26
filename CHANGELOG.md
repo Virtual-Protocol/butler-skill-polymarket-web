@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.4
+
+- Log out (step 11, B7): the browser keeps Polymarket's saved login across
+  chats but shows **Log in** until the wallet is connected. Connect the
+  wallet first, then check; never answer "already logged out" from the
+  header alone.
+
 ## 0.2.3
 
 - Step 4 (bet): send the owner the question, price and about how many

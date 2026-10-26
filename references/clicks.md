@@ -114,8 +114,11 @@ f. Click **Withdraw** once. See: cash drops. Refused or no change: stop, say
 
 ## B7. Log out
 
-After a backup run, or when your owner asks. Go to the portfolio (**Log in**
-on top: done). Click your picture, top right. `browser_act` "click Log out in
+After a backup run, or when your owner asks. Your browser keeps
+Polymarket's saved login across chats, but shows **Log in** until your
+wallet is connected. So first `browser_connect_wallet`, then go to the
+portfolio. **Log in** on top now: done (out). Else click your picture, top
+right. `browser_act` "click Log out in
 the open menu" (off screen; missed: "scroll the open menu down", once). One
 look: **Log in** on top = out. Reply; never reopen.
 
