@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.15
+
+- Withdraw got stuck 5+ min on the token dropdown: it ran a form check
+  early, then clicked USDC again and again "to be sure". Step e now says:
+  pick chain first, then token; if a value already shows, leave it; one
+  click each; no re-click and no check before step f.
+- Step f is one `browser_extract` of all four fields. Small word trims to
+  fit the cap.
+
 ## 0.1.14
 
 - Withdraw: two explicit stops so the Butler never improvises. Step f: the
