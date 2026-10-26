@@ -114,7 +114,8 @@ f. Click **Withdraw** once. See: cash drops. Refused or no change: stop, say
 
 ## B7. Log out
 
-After a backup run, or when your owner asks. Your browser keeps
+After a backup run only: your own browser. Your owner's "log out" is
+SKILL.md step 11 (the server's login). Your browser keeps
 Polymarket's saved login across chats, but shows **Log in** until your
 wallet is connected. So first `browser_connect_wallet`, then go to the
 portfolio. **Log in** on top now: done (out). Else click your picture, top

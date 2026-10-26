@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.5
+
+- Log out (step 11) is one command, `acp site polymarket logout` (server
+  #1244): it drops the server's saved login, which since server #1242 is
+  the login that counts. No browser, no card. The B7 clicks are only for
+  your own browser after a backup run.
+
 ## 0.2.4
 
 - Log out (step 11, B7): the browser keeps Polymarket's saved login across
