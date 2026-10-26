@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.13
+
+- Withdraw (step 9) is a click list a-g from the 2026-10-23 walkthrough:
+  `bevo-read me` for the one allowed address, /portfolio, read Cash and ask
+  first, then Withdraw, Crypto address, type address + amount (Max for all),
+  Receive token USDC, Receive chain Base, check all 42 characters, click
+  Withdraw once. Asking before the form means no form left open while the
+  owner answers. No screenshot.
+- Dropped the screenshot from the bet form and the captcha row.
+- Shorter retry rules and wording to fit the 12,000-char cap.
+
 ## 0.1.12
 
 - Fund: read the deposit address fresh on every deposit, never one
