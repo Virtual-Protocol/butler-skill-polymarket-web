@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.21
+
+- First real bet ($3 Lamine Yamal Yes, 0.1.19): the ask was right, but
+  after the yes it ran 6+ min and 30+ steps. The form has no **Trade**
+  button: the submit is the blue **Buy Yes** / **Buy No** under Amount. It
+  hunted for "Trade", clicked Buy Yes several times, hit the Enable
+  Trading pop-up, then went looking for its wallet and deposit address to
+  read positions.
+- Step 7 now names the blue **Buy Yes** / **Buy No** button, clicks it
+  once, clicks it once more only after the Enable Trading pop-up, then
+  checks only that cash dropped and replies: no positions, no address
+  hunts. Sell names the blue **Sell** button. "Trade" is gone everywhere.
+- Trims: the `/value` call (positions has each worth), a shorter budget row.
+
 ## 0.1.20
 
 - Sell (close a bet) got a click list in step 8: open the position's own
