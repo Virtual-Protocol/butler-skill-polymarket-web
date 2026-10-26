@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.9
+
+- Login (step 3) is now a click list a-g: each line says what to click or
+  type, what the screen should show after ("See"), and the one fix to try
+  when it does not ("Else"). Buttons are found by their visible words. The
+  same list is meant to become a click helper's step list later.
+- An Enable Trading pop-up after login is closed, never searched for; it
+  comes back at the first bet.
+
 ## 0.1.8
 
 - Login: `browser_type_email` (`submit: true`) and `browser_type_code` with
