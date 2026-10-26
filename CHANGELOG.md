@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.17
+
+- Claim got a click list (step 8), from the 3m 33s / 14-step redeem run:
+  Portfolio → **Redeem** on the row → close the auto-redeem pop-up (never
+  turn it on) → **Redeem** in the "Redeem Yes for $X" pop-up → "Cashed
+  Out" → close any pop-up and reply. The run lost steps to a double click,
+  two early API checks, a button/dialog check and a balance re-check.
+- Sell and claim now always ask first: the run took "can you help redeem
+  the win" as the yes.
+- Trims to fit the cap: When to use is one paragraph; dropped the "Order
+  failed" row (Idempotency covers it) and a "Say to the owner" line the
+  steps now cover.
+
 ## 0.1.16
 
 - Withdraw skipped the question: the owner wrote "withdraw all my cash" and
