@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.19
+
+- Bet got a click list (steps 6 and 7).
+- `pmweb.py event` now prints a `url` per row:
+  `polymarket.com/event/<event>/<market>` opens a page for that one market
+  (checked live: its title is the market's question). No row hunting on
+  events with many rows, and step 6c checks the page's question matches
+  the row they chose.
+- Step 7: one read of "Avg. Price" right before **Trade** (the 2¢ rule),
+  then **Trade** once. **Enable Trading** pops up on the first bet: click
+  through it once, then **Trade** once more; never look for it. Reply
+  with shares and price, no other checks.
+- The question names the market, so the owner sees which one.
+- Trims to fit the cap: the bad-case rule, the price-held rule and its
+  failure row now point at steps 6 and 7 instead of repeating them.
+
 ## 0.1.18
 
 - Withdraw $5 took ~5 min / 15 steps on 0.1.17. Half the steps were
