@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.27
+
+- Wallet login instead of email (branch `wallet-login`, needs virtuals-agent
+  PR #269 and bevo-server PR #1227). Step 3: `browser_connect_wallet`, then
+  **Log in** → **Rabby**; the sign-in is an owner card, and the Butler checks
+  `browser_connect_wallet` every ~20 s for its outcome (up to 5 min).
+- Bet and sell: Enable Trading and each order are owner cards; wait as in 3d.
+- Claim and withdraw are not signed in this build: say so, stop.
+- Security 4: expect only the sign-in, Enable Trading and order cards.
+
 ## 0.1.26
 
 - Step 10: log out. Open the portfolio, click the picture, then `browser_act`
