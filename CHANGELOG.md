@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.28
+
+- Step 4 reads cash from the API too, so "my balance" needs no browser.
+  `pmweb.py cash <PM_WALLET>` reads the pUSD address from Polymarket's
+  contracts page, then `bevo-rpc 137 eth_call` `balanceOf` on Polygon.
+  No `cash $` line (RPC down): read **Cash** atop the site, as before.
+- Withdraw 9b asks with step 4's cash; the portfolio page opens only after
+  the yes. Rule 2 ("They have it") uses step 4's cash.
+- `bevo-rpc` added to `requires.bins`.
+- Trims to stay under the 12,000-char cap (no rule removed): reader helpers
+  deduplicated, failure table as a list.
+
 ## 0.1.27
 
 - Wallet login instead of email (branch `wallet-login`, needs virtuals-agent
