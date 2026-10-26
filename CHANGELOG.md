@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.11
+
+- After creating a duty, Butler proposes its Polymarket limit with
+  `duty_pocket` `siteLimit` (a hold card), instead of sending the owner to
+  the duty page.
+
 ## 0.2.10
 
 - A bet with a time or schedule ("in 3 minutes", "every day") becomes a
