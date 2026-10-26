@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.11
+
+- Fund: the 2026-10-26 run took 6 min / 24 steps (re-checked login, opened
+  the chain menu, then tried to decode the QR picture and install a QR
+  reader). Now: open the site, Deposit, Transfer Crypto, read the field
+  under "Your deposit address", send. Never a screenshot, a QR code, or a
+  command or package to read the address; leave the chain menu alone.
+- Shorter "When to use" and failure table to fit the 12,000-char cap.
+
 ## 0.1.10
 
 - Fund (step 5) is a click list a-e like login: Deposit, Transfer Crypto,
