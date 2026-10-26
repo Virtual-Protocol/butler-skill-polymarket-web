@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.8
+
+- Step 9: after filing a card, Butler no longer asks the owner to tell it
+  when they held it. The server posts "working on it" at the hold and the
+  result when done (server, running note).
+
 ## 0.2.7
 
 - Log in (step 12) is one command, `acp site polymarket login` (server
