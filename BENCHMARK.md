@@ -39,6 +39,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-27 | Positions ("show my polymarket") | site-command (version not checked) | 9s (+1s follow-up line) | 2 (+1) | $3.00 cash, NATO x Russia Yes 15.7894 sh worth $2.61 | `acp site polymarket positions`, no browser. Extra step: a 1-step "anything you want done?" offer after. |
 | 2026-10-27 | Bet $1 (Mbappé Yes), cold (first run on the kept login) | server #1244 (staging ef06dd04) | 2m 14s | — | **done**: 5.18 shares at worst 19.7¢ (shown 17.8¢), cash $3.00 → $1.98 | First server-path bet filled from chat. Its first try had failed on the geoblock check (card 5085, before the retry fix). Butler's reply ended with "well inside your $50 cap" (skill security 5). |
 | 2026-10-27 | Sell all (5.18 Mbappé Yes), warm (right after the cold bet) | server #1244 (staging ef06dd04), skill 0.2.5 or older | 1m 36s | 3 | **done**: sold at worst 18.2¢, ~$0.97 back, cash $1.98 → $2.95 | 38 s faster than the cold bet (2m 14s); best click-flow sell was 3m 00s. Butler then posted the same result a 2nd time (1:43 AM), and both still named the $50 cap (skill not yet reinstalled to 0.2.6). |
+| 2026-10-27 | Deposit $3 (card 5089) | server #1244 (staging ef06dd04) | tap → fail 55s | — | not done, nothing sent, cash $2.95 | Button label is now "Transfer Crypto No limit • Instant"; the exact match missed it. Fixed in server #1246. Butler offered the backup clicks (asks first, as the skill says). |
 
 ## Summary (2026-10-26, end of day)
 
