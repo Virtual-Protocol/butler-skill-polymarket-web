@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.20
+
+- Sell (close a bet) got a click list in step 8: open the position's own
+  market page, **Sell**, the outcome, the shares (all: **Max**), one read
+  of question/outcome/shares/payout, ask; after the yes read the payout
+  again (2¢ rule), **Trade** once, reply with no checks.
+- `pmweb.py positions` prints each position's `url`
+  (`/event/<eventSlug>/<slug>`, fields checked live on the data API)
+  instead of a slug.
+- Cut rules the steps now hold: "say the bad case" (the step 6 question
+  has it), "they said yes" and "the price held" (steps 7a and 8d), and the
+  "price moved" failure row.
+
 ## 0.1.19
 
 - Bet got a click list (steps 6 and 7).
