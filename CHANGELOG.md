@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.23
+
+- Bet and sell now ask from the API, with no browser in the ask turn, and do
+  every browser step after the yes, in one turn. Why: the sell test filled
+  the form in the ask turn (3m 06s), the owner answered 3 min later, and
+  the click turn looped for 8+ min clicking Sell with nothing sold. The
+  form had most likely gone stale, or the session had been closed for
+  idling. Filling and clicking in the same turn removes that gap, and the
+  question comes in seconds.
+- The 2¢ rule now compares the form's price with the API price the owner
+  said yes to (7c, 8b).
+
 ## 0.1.22
 
 - Step 7c: the first-bet pop-up was a trading-terms pop-up, not only
