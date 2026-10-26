@@ -37,7 +37,7 @@ Best run per action, first try → best. Target 1–2 min, 2–3 min acceptable.
 | Withdraw | 5m 10s+ (stuck) | 4m 15s | 0.1.18 | owner OK for now |
 | Claim | — | 3m 33s | 0.1.16 (no click list) | owner OK; click list (0.1.17) untested |
 | Search + ask (bet) | ~1–2m | 1m 25s | 0.1.23 | in target |
-| Bet (after yes) | 7m 28s | 5m 16s | 0.1.24 | owner OK; 0.1.25 should be ~2.5–3m |
+| Bet (after yes) | 7m 28s | 3m 55s | 0.1.25 | owner OK; ~4 steps lost to the order-guard refusing Buy Yes; fill to confirm |
 | Sell (ask + click) | 11m+ (stuck) | ~4m (52s + 3m); click 3m 00s–3m 33s twice | 0.1.23–0.1.24 | owner OK |
 
 Floor: about 20 s per browser step (each click is a model call in the browser
