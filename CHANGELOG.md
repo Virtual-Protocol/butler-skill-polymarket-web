@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.24
+
+- Bet turn on 0.1.23 ($2 Fed No change): 4+ min spent typing into
+  **Amount** (typed, re-typed, clicked the field, re-checked). The box
+  does not take typing reliably. Step 7b now builds the dollars with the
+  form's **+$1** / **+$5** / **+$10** buttons, and 7c reads Amount back:
+  not their dollars, stop (a wrong Amount would bet the wrong sum).
+
 ## 0.1.23
 
 - Bet and sell now ask from the API, with no browser in the ask turn, and do
