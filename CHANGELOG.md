@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.9
+
+- In a duty: every `acp site polymarket` action runs inside the owner's
+  allowance (server: duties get full control, 2026-10-27). Cash short of a
+  bet: deposit the shortfall (at least $3) first, wait, check, then bet.
+
 ## 0.2.8
 
 - Step 9: after filing a card, Butler no longer asks the owner to tell it
