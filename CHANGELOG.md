@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2
+
+- Step 9: a new account's one-time **Enable Trading** (deploy, API keys,
+  approve tokens) is signed by the server under the same card; no second tap.
+- Backup clicks B1f/B4e: never close Enable Trading; click **Deploy**, then
+  each **Sign**, each one a card the owner taps. B1c: on "Connector not
+  found", go **Back** and pick **Rabby** again (twice at most).
+
 ## 0.2.1
 
 - Step 2: when several markets fit, the Butler asks Jev (`decide`, one

@@ -21,14 +21,17 @@ a. `browser_navigate` to `https://polymarket.com`. See: **Log in** on top.
    Else **Cash** or **Portfolio**: you are in; go to g.
 b. `browser_connect_wallet`, once. Never an email.
 c. Click **Log in**, then **Rabby** (often under **More methods**; never the
-   MetaMask tile). Missing: reload once, click again.
+   MetaMask tile). Missing: reload once, click again. "Connector not
+   found": **Back**, wait 2 s, **Rabby** again (twice at most).
 d. A sign-in card. Say once: *"Tap the card in your app."* Every ~20 s,
    `browser_connect_wallet`: last request's `outcome`. Signed: go on.
    Rejected, refused or 5 min: stop, say so.
 e. "Choose a username": `bt` + your wallet's last 6 characters; tick the
    terms; **Continue**. Never ask your owner.
-f. Anything optional: **Skip** or close. **Enable Trading**: close it; it
-   returns at the first bet; never look for it. See: **Cash** or
+f. **Enable Trading** window (a new account; it may also open at the first
+   bet): never close it. Click **Deploy**, then each **Sign**, in order, one
+   at a time. Each sign is a card: say *"Tap the card in your app."* and
+   wait as in d. Anything else optional: **Skip** or close. See: **Cash** or
    **Portfolio** at the top. Else "Page not found": back to b.
 g. Note **your Polymarket wallet address** (profile or deposit).
 
@@ -70,8 +73,8 @@ c. One `browser_extract`: the page's question, outcome, Amount, "Avg. Price".
    Not their row or dollars: stop. Over 2¢ worse than you said: ask again.
 d. `browser_act` "click the blue Buy Yes button" (or Buy No), once. Its order
    card: wait as in B1d.
-e. A pop-up covers it (terms, **Enable Trading**): click its buttons through,
-   once; each sign is a card: wait as in B1d. Then the blue button once more.
+e. A pop-up covers it (terms, **Enable Trading**): do it as in B1f (Deploy,
+   then each Sign; each sign is a card). Then the blue button once more.
    Else never again.
 f. One check: cash down by the amount. Reply: shares, price. Unclear: stop,
    say so.
