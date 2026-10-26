@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.18
+
+- Withdraw $5 took ~5 min / 15 steps on 0.1.17. Half the steps were
+  `browser_observe` before each click, which the login rule asked for.
+  Clicks now go straight to `browser_act`; observe only when a click misses.
+- Base took 3 tries: the chain menu is two clicks (open, then pick).
+  Step 9e now says so, for chain and token. It also says "no reads until
+  f" (the run read the form 3 times early).
+- The withdraw question is now word for word, with the amount, USDC on
+  Base and the wallet's first 6 and last 4 (the run asked "confirm the
+  $5 site withdrawal").
+
 ## 0.1.17
 
 - Claim got a click list (step 8), from the 3m 33s / 14-step redeem run:
