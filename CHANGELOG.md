@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.12
+
+- Fund: read the deposit address fresh on every deposit, never one
+  remembered from an earlier chat or run. The 2026-10-26 run skipped
+  Transfer Crypto and sent to an address it already knew (right this time,
+  but wrong if it is ever logged in to another account).
+
 ## 0.1.11
 
 - Fund: the 2026-10-26 run took 6 min / 24 steps (re-checked login, opened
