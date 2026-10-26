@@ -34,6 +34,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Bet $1 (Mbappé Ballon d'Or Yes), new chat | 0.2.2 | card in 59s; failed ~1m 12s after the tap | — | card 5080 not done, nothing bought | **First server-path bet.** Card in 59 s (no browser before the card). After the tap: "Enable Trading steps did not finish (the page shows: Close)": the server gave up while the API-key Sign was still being answered. Fixed in server #1239. |
 | 2026-10-27 | Log out, new chat | 0.2.3 | 1m 38s | 13 | correct: "not logged in, nothing to log out" | Server path keeps no login, and its own browser was already logged out. It opened its browser to check and also read positions: both extra. |
 | 2026-10-27 | Log in (Butler's own browser) | 0.2.3 | 42s | 6 | logged in, header Portfolio $5.61 / Cash $3.00 | No sign-in card: injecting the wallet (Rabby look) brought back the saved Polymarket session from the earlier backup deposit, so the page asked for no new signature. Not the server path (that keeps no login). |
+| 2026-10-27 | Bet $1 (Mbappé Yes), server run on Mac, test wallet | server #1241 | 21s (server run only, no chat/card) | — | **done**: 3.69 shares at worst 28.7¢ | First filled order on the server path. Login → Enable Trading API-key sign → Buy → Terms of Use pop-up → Accept → Buy again → order signed (CTF Exchange v2). Cards 5080 and 5084 failed on the steps fixed by #1239–#1241. |
 
 ## Summary (2026-10-26, end of day)
 
