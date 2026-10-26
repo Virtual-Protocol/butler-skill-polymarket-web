@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.30
+
+- Logout (10) ends on one look: **Log in** on top means logged out; reply
+  and stop. A wallet logout looped: the header already showed Log in, the
+  Butler doubted it and reopened the menu.
+
 ## 0.1.29
 
 - Security 4 names Enable Trading's cards: "Unlock trading" (the CLOB
