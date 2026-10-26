@@ -21,6 +21,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Sell all (32.25 Yamal Yes) | 0.1.22 | ask 3m 06s / 9; click turn 8m+ / 10+, stopped | 9 + 10 | nothing sold | Ask filled the form first. Owner answered 3 min later; click turn looped on Sell (~48 s a step). Led to 0.1.23: ask from API, fill + click after the yes. |
 | 2026-10-26 | Sell all (32.25 Yamal Yes) | 0.1.23 | ask 52s / 12; click 3m 00s / 16; total ~4m | 28 | sold, ~$2.64 back, cash $1.96 → $4.60 | Way B: ask from API (was 3m 06s). Filled at ~8¢ vs 9.2¢ asked (inside the 2¢ rule, but -10% on a cheap share). Extra steps: Platforms row update + watcher offer. Owner: OK. |
 | 2026-10-26 | Bet $2 (Fed No change Yes) | 0.1.23 | ask 1m 25s / 6; bet 7m 24s / 20 | 26 | filled 2.1 shares at 95¢, cash $4.60 → $2.60 | Ask from API worked. Bet turn: page opened in 1 step, then ~12 steps typing into Amount. Plus the Platforms row refresh. Fixed in 0.1.24 (+$ buttons). |
+| 2026-10-26 | Bet $1 (Fed No change Yes) | 0.1.24 | ask 1m 25s / 7; bet 5m 16s / 15 | 22 | filled ~1.05 shares at 95¢, cash $2.60 → $1.60 | Owner: OK. No Amount fight. Lost: first submit click missed (+2 looks), 2 checks after, then 5 steps of Platforms-row bookkeeping (~1.5 min). |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 
 ## Where the time still goes (deposit, 0.1.12)
