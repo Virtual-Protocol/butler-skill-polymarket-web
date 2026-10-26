@@ -23,7 +23,8 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Bet $2 (Fed No change Yes) | 0.1.23 | ask 1m 25s / 6; bet 7m 24s / 20 | 26 | filled 2.1 shares at 95¢, cash $4.60 → $2.60 | Ask from API worked. Bet turn: page opened in 1 step, then ~12 steps typing into Amount. Plus the Platforms row refresh. Fixed in 0.1.24 (+$ buttons). |
 | 2026-10-26 | Bet $1 (Fed No change Yes) | 0.1.24 | ask 1m 25s / 7; bet 5m 16s / 15 | 22 | filled ~1.05 shares at 95¢, cash $2.60 → $1.60 | Owner: OK. No Amount fight. Lost: first submit click missed (+2 looks), 2 checks after, then 5 steps of Platforms-row bookkeeping (~1.5 min). |
 | 2026-10-26 | Sell all (3.15 Fed No change Yes) | 0.1.24 | click turn 3m 33s / 16 | 16 + ask | sold at 94¢ for $2.97, cash $1.60 → $4.56, no positions left | Owner: OK. Still on 0.1.24, so the Platforms steps were included. |
-| 2026-10-26 | Bet $1 (Fed No change Yes) | 0.1.25 | ask 1m 24s / 6; bet 3m 55s / 18 | 24 | Butler said "filled 1.05 shares at 95¢"; its own screenshot still shows cash $4.56 (fill not confirmed yet) | Ask from API, no browser. Bet turn: the browser helper refused the Buy Yes click twice ("per user instructions do not click it; report it instead") — the order-guard in `virtuals-agent/src/lib/browser.ts:114`. Earlier bets passed this guard by chance. Still 1m 21s faster than 0.1.24 (5m 16s). |
+| 2026-10-26 | Bet $1 (Fed No change Yes) | 0.1.25 | ask 1m 24s / 6; bet 3m 55s / 18 | 24 | Butler said "filled 1.05 shares at 95¢"; confirmed later: cash $3.56 + 1.05 Fed Yes shares | Ask from API, no browser. Bet turn: the browser helper refused the Buy Yes click twice ("per user instructions do not click it; report it instead") — the order-guard in `virtuals-agent/src/lib/browser.ts:114`. Earlier bets passed this guard by chance. Still 1m 21s faster than 0.1.24 (5m 16s). |
+| 2026-10-26 | Log out | 0.1.26 | 2m 26s | 11 | logged out; header shows Log in / Sign up | Before 0.1.26 it looped: Log out sits below the language row, off screen. Now `browser_act` clicks it directly. Still ~7 steps over the 3–4 planned. |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 
 ## Summary (2026-10-26, end of day)
@@ -35,9 +36,10 @@ Best run per action, first try → best. Target 1–2 min, 2–3 min acceptable.
 | Login | 11m 50s | 2m 50s | 0.1.9 | acceptable |
 | Deposit | 6m 00s | 2m 45s | 0.1.12 | acceptable |
 | Withdraw | 5m 10s+ (stuck) | 4m 15s | 0.1.18 | owner OK for now |
+| Log out | looped (stuck) | 2m 26s | 0.1.26 | acceptable |
 | Claim | — | 3m 33s | 0.1.16 (no click list) | owner OK; click list (0.1.17) untested |
 | Search + ask (bet) | ~1–2m | 1m 25s | 0.1.23 | in target |
-| Bet (after yes) | 7m 28s | 3m 55s | 0.1.25 | owner OK; ~4 steps lost to the order-guard refusing Buy Yes; fill to confirm |
+| Bet (after yes) | 7m 28s | 3m 55s | 0.1.25 | owner OK; ~4 steps lost to the order-guard refusing Buy Yes; fill confirmed |
 | Sell (ask + click) | 11m+ (stuck) | ~4m (52s + 3m); click 3m 00s–3m 33s twice | 0.1.23–0.1.24 | owner OK |
 
 Floor: about 20 s per browser step (each click is a model call in the browser
