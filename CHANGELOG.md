@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.29
+
+- Security 4 names Enable Trading's cards: "Unlock trading" (the CLOB
+  login; 1 or 2, as a new account first tries to fetch its key, then
+  creates one) and the approvals card. Before, the Butler could read an
+  "Unlock trading" card as an unexpected one and stop mid-setup.
+
 ## 0.1.28
 
 - Step 4 reads cash from the API too, so "my balance" needs no browser.
