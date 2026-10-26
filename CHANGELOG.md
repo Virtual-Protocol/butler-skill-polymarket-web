@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.22
+
+- Step 7c: the first-bet pop-up was a trading-terms pop-up, not only
+  Enable Trading. It now names both. (The 0.1.19 run's screenshot also
+  confirmed the blue **Buy Yes** under "To win" and the form header
+  "<row> · Yes".)
+
 ## 0.1.21
 
 - First real bet ($3 Lamine Yamal Yes, 0.1.19): the ask was right, but

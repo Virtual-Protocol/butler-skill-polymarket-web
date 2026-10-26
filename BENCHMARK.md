@@ -17,6 +17,7 @@ Target: one action in 1–2 min; 2–3 min is acceptable.
 | 2026-10-26 | Redeem won bet (Lula Yes, 13 shares) | 0.1.16 | 3m 33s | 14 | done, cash $0.00 → $13.04 | Old prose step 8, no click list. Owner OK with the time. Did not ask yes/no first ("can you help redeem the win" taken as the yes). |
 | 2026-10-26 | Withdraw $5 | 0.1.17 | ~5m | 15 | done, cash $13.04 → $8.04 | Asked first (vague: "confirm the $5 site withdrawal"). 3 observes before clicks, 3 early form reads, Base picked 3 times. |
 | 2026-10-26 | Withdraw $3 (click turn) | 0.1.18 | 4m 15s | 12 | done, cash $8.04 → $5.04, tx `0x2e…9059` | Owner: acceptable for now. Ask turn was correct word for word, but it first read the API skill's ACP account (both skills answer "Polymarket"). Extra: a form read before amount, "Find the submit button", a 2nd submit-click step, 2 cash checks after. |
+| 2026-10-26 | Search + bet $3 (Yamal Yes) | 0.1.19 | ask turn ~1–2m; bet turn 7m 28s | 39 (bet turn) | 1 bet filled: 32.3 shares at ~9.6¢, cash $5.04 → $1.96 | Search, row link and question were right. Skill said "Trade"; the real button is the blue **Buy Yes**, so it hunted and re-clicked. A trading-terms pop-up came first. Then ~15 steps hunting its wallet/deposit address to read positions. Fixed in 0.1.21–0.1.22. |
 | 2026-10-26 | Deposit $3, new chat | 0.1.12 | 2m 45s | 15 | card 5017, right address (`0x489d…7f4a`) | Includes 2 steps of skill install. 4 steps lost to geoblock/page-load retries. 4 steps after the card (approval status, Platforms duty checks). |
 
 ## Where the time still goes (deposit, 0.1.12)
