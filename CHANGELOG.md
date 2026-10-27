@@ -1,5 +1,12 @@
 # Changelog
 
+
+## 0.2.12
+
+- The duty's Polymarket limit goes on `duty_create` itself (`siteLimit`),
+  so it is proposed when the duty is filed. `duty_pocket` only when the
+  create answers `site-limit-needed`.
+
 ## 0.2.11
 
 - After creating a duty, Butler proposes its Polymarket limit with
