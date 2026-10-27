@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.2.14
+
+- A duty's top-up answered `not_done` or `failed` is retried under a new key
+  too: a top-up refused for a short Butler wallet kept its dead key, so the
+  duty never retried after the owner added USDC (staging 2026-10-27).
+
 ## 0.2.13
 
 - A duty waits 3 min after a top-up, not 1: a bet 1 min after a fresh
