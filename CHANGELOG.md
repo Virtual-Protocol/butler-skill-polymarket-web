@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 0.2.13
+
+- A duty waits 3 min after a top-up, not 1: a bet 1 min after a fresh
+  deposit came back "never asked to sign the order" (staging 2026-10-27).
+- A duty bet answered `not_done` (nothing bought) is tried again on a later
+  run under a new key, at most 3 times; never after `unknown_outcome`.
+
 ## 0.2.12
 
 - The duty's Polymarket limit goes on `duty_create` itself (`siteLimit`),
