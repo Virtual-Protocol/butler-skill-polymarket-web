@@ -1,7 +1,7 @@
 ---
 name: butler-polymarket-web
 description: "Bet on Polymarket for your owner: trending markets and odds, your own Polymarket account, bet, sell, claim, fund and withdraw, run by the server with one command."
-version: 0.2.16
+version: 0.2.17
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","withdraw from polymarket","deposit to polymarket"],"maxSteps":150,"requires":{"bins":["cat","curl","python3","acp","bevo-read","bevo-rpc","bevo-send"],"skills":[]}}}
 ---
 
@@ -220,9 +220,8 @@ any other answer, report and stop.
 - `SITE_GEOBLOCK_UNCHECKED`: the server already tried 3 browsers in your
   owner's country; nothing was sent. Say so, and run it once more only if
   asked. Never another country.
-- "Butler has no Polymarket account yet" (a deposit): the first log-in did
-  not finish. Run step 12 once; after it is done, the deposit once more
-  under a NEW key.
+- "Polymarket's wallet factory now gives …" (a deposit): nothing was sent.
+  Say so and stop. No log-in, no retry, no backup clicks.
 - `SITE_COUNTRY_UNKNOWN`: ask your owner's country, then run it once more.
 - `SITE_RUN_IN_PROGRESS`: another run is going. Wait 1 min, run once more.
 - `SITE_NOT_ENABLED` or `SITE_BROWSER_BUDGET`: say so. No backup.
