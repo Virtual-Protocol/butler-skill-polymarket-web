@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 0.2.15
+
+- A duty run before the owner holds the limit card is refused
+  `POLYMARKET_DUTY_NOT_ARMED`: the duty waits and keeps no key. A refusal also
+  moved nothing, so it is retried under a new key (staging 2026-10-27: the
+  first top-up beat the hold, kept its dead key and failed every run after).
+
 ## 0.2.14
 
 - A duty's top-up answered `not_done` or `failed` is retried under a new key
