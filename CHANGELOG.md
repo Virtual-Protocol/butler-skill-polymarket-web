@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.20
+
+- Auto-claim: read `positions` first; when its `Auto-redeem` fact is `on`, say it is
+  already on and file no card (needs bevo-server fix/pm-card-language deployed).
+
 ## 0.2.19
 
 - "Turn on auto-claim" is step 13: `acp site polymarket auto-redeem`, one
