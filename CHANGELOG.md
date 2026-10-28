@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.18
+
+- The server writes the Polymarket Platforms row after every card (server
+  #1325). Butler never writes it, and never says it did: a
+  tester's row stayed at $1.00 while Butler said it had updated it.
+- Chat bet bigger than the cash: say the cash and the gap, offer a top-up,
+  wait for the yes. Never change or re-file a duty, never file a limit card
+  for it (a tester's errored duty was raised $5 → $10 and a $19 limit card
+  filed, unasked).
+- In a duty, a refusal with a code (`SITE_SENDS_ASK`, ...) fails at once: it
+  refuses again on every retry. `POLYMARKET_DUTY_NOT_ARMED` still waits.
 
 ## 0.2.15
 
