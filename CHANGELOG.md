@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.19
+
+- "Turn on auto-claim" is step 13: `acp site polymarket auto-redeem`, one
+  card, only when the owner asks (needs server feat/pm-auto-redeem). Backup
+  B8 follows the owner's recorded path: Account → Trading → Enable.
+- Backup claim clicks **Claim winnings** on the market page, never the row's
+  **Claim** (a "Cash out" sell window, staging 2026-10-28).
+
 ## 0.2.18
 
 - The server writes the Polymarket Platforms row after every card (server

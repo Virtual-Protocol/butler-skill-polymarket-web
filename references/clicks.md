@@ -93,11 +93,14 @@ c. `browser_act` "click the blue Sell button", once. Its card: wait as in
 
 **Claim** (B2 says `REDEEMABLE`):
 
-a. `browser_navigate` to `https://polymarket.com/portfolio`. Click **Redeem**
-   on that row. An auto-redeem pop-up: close it (never turn it on), click
-   **Redeem** again.
-b. See: **Redeem Yes for $13.04**. Click its **Redeem** once.
-c. See: "Cashed Out". Close any pop-up. Reply; no checks.
+a. `browser_navigate` to the position's `url`. **Claim winnings** in the
+   side panel: click it once, go to c. Never the row's **Claim**: it opens
+   a "Cash out" window, which is a sell.
+b. Else `browser_navigate` to `https://polymarket.com/portfolio`. Click
+   **Redeem** on that row. An auto-redeem pop-up ("Get Paid Instantly"):
+   close it (B8 is only for your owner's ask), click **Redeem** again.
+   See: **Redeem Yes … Receive $13.04**. Click **Redeem $13.04** once.
+c. Its card: wait as in B1d. Close any pop-up. Reply; no checks.
 
 ## B6. Withdraw
 
@@ -111,6 +114,17 @@ e. One `browser_extract` of all four. The address must match a in all 42
    characters; else retype once, then stop. Unreadable: stop, say so.
 f. Click **Withdraw** once. See: cash drops. Refused or no change: stop, say
    so. Reply; no checks.
+
+## B8. Auto-claim
+
+Only when your owner asked to turn on auto-claim (SKILL.md step 13).
+
+a. `browser_navigate` to `https://polymarket.com/settings` (**Log in**: B1
+   first). Or click your picture, top right, then **Account**.
+b. Click **Trading** in the left list. See: **Auto-redeem wins**.
+   Already on: say so, stop.
+c. Click its **Enable** once. Its card is one signature (3 approvals, no
+   money): wait as in B1d. Reply; no checks.
 
 ## B7. Log out
 
