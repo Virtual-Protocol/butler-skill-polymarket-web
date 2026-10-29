@@ -1,7 +1,7 @@
 ---
 name: butler-polymarket-web
 description: "Bet on Polymarket for your owner: trending markets and odds, your own Polymarket account, bet, sell, claim, fund and withdraw, run by the server with one command."
-version: 0.2.21
+version: 0.2.22
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","withdraw from polymarket","deposit to polymarket"],"maxSteps":150,"requires":{"bins":["cat","curl","python3","acp","bevo-read","bevo-rpc","bevo-send"],"skills":[]}}}
 ---
 
@@ -16,7 +16,8 @@ happens): "trending?" step 2; "my bets" 3; "bet $2 on Yes" 4; "sell it" 5;
 
 1. **The server does the clicks.** You run one `acp site polymarket ...`
    command and wait. You never open a browser for it.
-2. **The account is yours, not your owner's** (your Butler wallet).
+2. **The account is yours, not your owner's:** your Butler wallet logs in.
+   Never an email or an inbox; never make one for Polymarket.
 3. **Your owner only chooses and approves.** A money command files a card;
    their tap on it is the yes. You do all the rest.
 4. **Outside service:** the server keeps its Platforms tab row

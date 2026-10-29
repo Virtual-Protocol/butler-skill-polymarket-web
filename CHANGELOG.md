@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.22
+
+- Before you start: Polymarket logs in with the Butler wallet only; never an
+  email or an inbox. A Butler asked its owner to name a new inbox to sign up
+  after a failed wallet log-in (2026-10-29); the rule was only in the backup
+  clicks (B1b).
+
 ## 0.2.21
 
 - Body back under the registry's 12,000-char cap (was 13,326 since 0.2.17), so
