@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.21
+
+- Body back under the registry's 12,000-char cap (was 13,326 since 0.2.17), so
+  the skill can be listed in butler-skills.
+- The reader's backup-only `cash` and `positions` modes moved to
+  `references/clicks.md` B2 (`/tmp/pmback.py`); SKILL.md's reader keeps `list`
+  and `event`.
+- Cut repeated lines (status-key hints, card rejected/failed, log-in screens,
+  B7 note); no rule changed.
+
 ## 0.2.20
 
 - Auto-claim: read `positions` first; when its `Auto-redeem` fact is `on`, say it is

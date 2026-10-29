@@ -41,9 +41,24 @@ g. Note **your Polymarket wallet address** (profile or deposit).
 With B1g's address (or the `Polymarket wallet` line of
 `acp site polymarket positions`):
 
+First write this reader once:
+
 ```sh
-python3 /tmp/pmweb.py cash <PM_WALLET>
-curl -sS "https://data-api.polymarket.com/positions?user=<PM_WALLET>&sizeThreshold=0.01" | python3 /tmp/pmweb.py positions
+cat > /tmp/pmback.py <<'PY'
+import json, re, subprocess, sys, urllib.request
+def c(p): return f"{round(float(p) * 100, 1):g}c"
+if sys.argv[1] == "cash":
+    t = urllib.request.urlopen("https://docs.polymarket.com/resources/contracts.md").read().decode()
+    q = {"to": re.search(r"CollateralToken[^`]*`(0x\w{40})", t)[1], "data": "0x70a08231" + sys.argv[2][2:].zfill(64)}
+    r = subprocess.run(["bevo-rpc", "137", "eth_call", json.dumps([q, "latest"])], stdout=-1).stdout
+    sys.exit(print(f"cash ${int(json.loads(r), 16) / 1e6:.2f}"))
+d = json.load(sys.stdin)
+if not d: print("no positions")
+for x in d:
+    print(f"- {x['title']} | {x['outcome']} | {x['size']:g} shares | paid {c(x['avgPrice'])} | now {c(x['curPrice'])} | worth ${x['currentValue']:.2f} | P&L ${x['cashPnl']:+.2f} | url https://polymarket.com/event/{x['eventSlug']}/{x['slug']}" + (" | REDEEMABLE" if x.get("redeemable") else ""))
+PY
+python3 /tmp/pmback.py cash <PM_WALLET>
+curl -sS "https://data-api.polymarket.com/positions?user=<PM_WALLET>&sizeThreshold=0.01" | python3 /tmp/pmback.py positions
 ```
 
 No `cash $`: read **Cash** atop the site.
