@@ -1,5 +1,430 @@
 # Changelog
 
+## 0.2.22
+
+- Before you start: Polymarket logs in with the Butler wallet only; never an
+  email or an inbox. A Butler asked its owner to name a new inbox to sign up
+  after a failed wallet log-in (2026-10-29); the rule was only in the backup
+  clicks (B1b).
+
+## 0.2.21
+
+- Body back under the registry's 12,000-char cap (was 13,326 since 0.2.17), so
+  the skill can be listed in butler-skills.
+- The reader's backup-only `cash` and `positions` modes moved to
+  `references/clicks.md` B2 (`/tmp/pmback.py`); SKILL.md's reader keeps `list`
+  and `event`.
+- Cut repeated lines (status-key hints, card rejected/failed, log-in screens,
+  B7 note); no rule changed.
+
+## 0.2.20
+
+- Auto-claim: read `positions` first; when its `Auto-redeem` fact is `on`, say it is
+  already on and file no card (needs bevo-server fix/pm-card-language deployed).
+
+## 0.2.19
+
+- "Turn on auto-claim" is step 13: `acp site polymarket auto-redeem`, one
+  card, only when the owner asks (needs server feat/pm-auto-redeem). Backup
+  B8 follows the owner's recorded path: Account → Trading → Enable.
+- Backup claim clicks **Claim winnings** on the market page, never the row's
+  **Claim** (a "Cash out" sell window, staging 2026-10-28).
+
+## 0.2.18
+
+- The server writes the Polymarket Platforms row after every card (server
+  #1325). Butler never writes it, and never says it did: a
+  tester's row stayed at $1.00 while Butler said it had updated it.
+- Chat bet bigger than the cash: say the cash and the gap, offer a top-up,
+  wait for the yes. Never change or re-file a duty, never file a limit card
+  for it (a tester's errored duty was raised $5 → $10 and a $19 limit card
+  filed, unasked).
+- In a duty, a refusal with a code (`SITE_SENDS_ASK`, ...) fails at once: it
+  refuses again on every retry. `POLYMARKET_DUTY_NOT_ARMED` still waits.
+
+## 0.2.15
+
+- A duty run before the owner holds the limit card is refused
+  `POLYMARKET_DUTY_NOT_ARMED`: the duty waits and keeps no key. A refusal also
+  moved nothing, so it is retried under a new key (staging 2026-10-27: the
+  first top-up beat the hold, kept its dead key and failed every run after).
+
+## 0.2.14
+
+- A duty's top-up answered `not_done` or `failed` is retried under a new key
+  too: a top-up refused for a short Butler wallet kept its dead key, so the
+  duty never retried after the owner added USDC (staging 2026-10-27).
+
+## 0.2.13
+
+- A duty waits 3 min after a top-up, not 1: a bet 1 min after a fresh
+  deposit came back "never asked to sign the order" (staging 2026-10-27).
+- A duty bet answered `not_done` (nothing bought) is tried again on a later
+  run under a new key, at most 3 times; never after `unknown_outcome`.
+
+## 0.2.12
+
+- The duty's Polymarket limit goes on `duty_create` itself (`siteLimit`),
+  so it is proposed when the duty is filed. `duty_pocket` only when the
+  create answers `site-limit-needed`.
+
+## 0.2.11
+
+- After creating a duty, Butler proposes its Polymarket limit with
+  `duty_pocket` `siteLimit` (a hold card), instead of sending the owner to
+  the duty page.
+
+## 0.2.10
+
+- A bet with a time or schedule ("in 3 minutes", "every day") becomes a
+  duty; nothing runs from chat. The duty's code tops up short cash before
+  every bet, even when the owner did not ask, and Butler tells the owner to
+  set the duty's Polymarket limit.
+
+## 0.2.9
+
+- In a duty: every `acp site polymarket` action runs inside the owner's
+  allowance (server: duties get full control, 2026-10-27). Cash short of a
+  bet: deposit the shortfall (at least $3) first, wait, check, then bet.
+
+## 0.2.8
+
+- Step 9: after filing a card, Butler no longer asks the owner to tell it
+  when they held it. The server posts "working on it" at the hold and the
+  result when done (server, running note).
+
+## 0.2.7
+
+- Log in (step 12) is one command, `acp site polymarket login` (server
+  #1247): one card, no money; it keeps the login for the next command.
+  Before, Butler ran `positions` (no browser) and called it a log-in.
+
+## 0.2.6
+
+- Removed the $50 cap on what Butler holds on Polymarket (owner's call,
+  2026-10-27). Every bet, sell, claim, fund and withdraw still needs the
+  owner's tap on its card.
+
+## 0.2.5
+
+- Log out (step 11) is one command, `acp site polymarket logout` (server
+  #1244): it drops the server's saved login, which since server #1242 is
+  the login that counts. No browser, no card. The B7 clicks are only for
+  your own browser after a backup run.
+
+## 0.2.4
+
+- Log out (step 11, B7): the browser keeps Polymarket's saved login across
+  chats but shows **Log in** until the wallet is connected. Connect the
+  wallet first, then check; never answer "already logged out" from the
+  header alone.
+
+## 0.2.3
+
+- Step 4 (bet): send the owner the question, price and about how many
+  shares **before** `acp site polymarket bet`, which waits for the tap. The
+  card stays the yes; no extra question.
+- Backup clicks B1c: Rabby can also sit under **Connect Wallet/Social**.
+
+## 0.2.2
+
+- Step 9: a new account's one-time **Enable Trading** (deploy, API keys,
+  approve tokens) is signed by the server under the same card; no second tap.
+- Backup clicks B1f/B4e: never close Enable Trading; click **Deploy**, then
+  each **Sign**, each one a card the owner taps. B1c: on "Connector not
+  found", go **Back** and pick **Rabby** again (twice at most).
+
+## 0.2.1
+
+- Step 2: when several markets fit, the Butler asks Jev (`decide`, one
+  choice over the rows' titles + "none of these") and uses the top pick at
+  0.7 or more; otherwise, or without the tool, it asks the owner. Jev never
+  moves money: the card still asks.
+
+## 0.2.0
+
+- Main path is now the server's `acp site polymarket <action>` command
+  (`positions`, `bet`, `sell`, `redeem`, `withdraw`, `deposit`; `acp site
+  status <key>` for a run still waiting). bevo-server does the clicks in its
+  own fresh, logged-out browser; the Butler runs one command, waits up to
+  100 s, and reports. It never opens a browser, logs in or logs out for it.
+- The card is the owner's yes: no yes/no question in chat first. The Butler
+  still asks for what is missing (market, outcome, dollars).
+- Step 9 says what each final status means: `done`, `not_done`, `unknown`,
+  `rejected`, `failed`, plus `still <status>` and `CODE: message` refusals.
+- Fallback rule: the 0.1.30 click steps run ONLY after `not done:` (nothing
+  was sent), after a new chat yes, and never in a duty. Never after
+  `outcome unknown` (the order may have gone through), `rejected`,
+  `failed` or a refusal like `SITE_GEOBLOCKED` / `SITE_NOT_ENABLED`.
+- The click steps moved to `references/clicks.md` (B1-B7). The backup
+  fund's `bevo-send` stays in SKILL.md step 10, as the validator wants
+  money commands in a [FIXED] step of SKILL.md.
+- Duties: `bet`, `sell`, `redeem` only, inside the owner's allowance, no
+  card; `withdraw` and `deposit` are refused; never the backup.
+- The reader's `event` rows now print `market <slug>`, the `--market` value.
+- The `acp site` commands are written inline, not in `sh` blocks: the hub
+  validator does not list the `site` acp group yet.
+
+## 0.1.30
+
+- Logout (10) ends on one look: **Log in** on top means logged out; reply
+  and stop. A wallet logout looped: the header already showed Log in, the
+  Butler doubted it and reopened the menu.
+
+## 0.1.29
+
+- Security 4 names Enable Trading's cards: "Unlock trading" (the CLOB
+  login; 1 or 2, as a new account first tries to fetch its key, then
+  creates one) and the approvals card. Before, the Butler could read an
+  "Unlock trading" card as an unexpected one and stop mid-setup.
+
+## 0.1.28
+
+- Step 4 reads cash from the API too, so "my balance" needs no browser.
+  `pmweb.py cash <PM_WALLET>` reads the pUSD address from Polymarket's
+  contracts page, then `bevo-rpc 137 eth_call` `balanceOf` on Polygon.
+  No `cash $` line (RPC down): read **Cash** atop the site, as before.
+- Withdraw 9b asks with step 4's cash; the portfolio page opens only after
+  the yes. Rule 2 ("They have it") uses step 4's cash.
+- `bevo-rpc` added to `requires.bins`.
+- Trims to stay under the 12,000-char cap (no rule removed): reader helpers
+  deduplicated, failure table as a list.
+
+## 0.1.27
+
+- Wallet login instead of email (branch `wallet-login`, needs virtuals-agent
+  PR #269 and bevo-server PR #1227). Step 3: `browser_connect_wallet`, then
+  **Log in** → **Rabby**; the sign-in is an owner card, and the Butler checks
+  `browser_connect_wallet` every ~20 s for its outcome (up to 5 min).
+- Bet and sell: Enable Trading and each order are owner cards; wait as in 3d.
+- Claim and withdraw are not signed in this build: say so, stop.
+- Security 4: expect only the sign-in, Enable Trading and order cards.
+
+## 0.1.26
+
+- Step 10: log out. Open the portfolio, click the picture, then `browser_act`
+  "click Log out in the open menu" at once. Log out sits below the language
+  row, off screen, so the Butler used to loop looking for it. If the click
+  misses: scroll the open menu down, click once more.
+- Trims to stay under the 12,000-char cap (no rule removed).
+
+## 0.1.25
+
+- The Platforms row updates only after a fund or a withdraw, never after
+  a bet, sell or claim (those only swap cash and shares). The 0.1.24 bet
+  spent 5 steps (~1.5 min) on it. Owner's call, 2026-10-26.
+- Buy and sell click with `browser_act` and the button's exact words
+  ("click the blue Buy Yes button"): the 0.1.24 bet's first, vaguer
+  submit click missed and cost 3 steps. After the click, one check only.
+
+## 0.1.24
+
+- Bet turn on 0.1.23 ($2 Fed No change): 4+ min spent typing into
+  **Amount** (typed, re-typed, clicked the field, re-checked). The box
+  does not take typing reliably. Step 7b now builds the dollars with the
+  form's **+$1** / **+$5** / **+$10** buttons, and 7c reads Amount back:
+  not their dollars, stop (a wrong Amount would bet the wrong sum).
+
+## 0.1.23
+
+- Bet and sell now ask from the API, with no browser in the ask turn, and do
+  every browser step after the yes, in one turn. Why: the sell test filled
+  the form in the ask turn (3m 06s), the owner answered 3 min later, and
+  the click turn looped for 8+ min clicking Sell with nothing sold. The
+  form had most likely gone stale, or the session had been closed for
+  idling. Filling and clicking in the same turn removes that gap, and the
+  question comes in seconds.
+- The 2¢ rule now compares the form's price with the API price the owner
+  said yes to (7c, 8b).
+
+## 0.1.22
+
+- Step 7c: the first-bet pop-up was a trading-terms pop-up, not only
+  Enable Trading. It now names both. (The 0.1.19 run's screenshot also
+  confirmed the blue **Buy Yes** under "To win" and the form header
+  "<row> · Yes".)
+
+## 0.1.21
+
+- First real bet ($3 Lamine Yamal Yes, 0.1.19): the ask was right, but
+  after the yes it ran 6+ min and 30+ steps. The form has no **Trade**
+  button: the submit is the blue **Buy Yes** / **Buy No** under Amount. It
+  hunted for "Trade", clicked Buy Yes several times, hit the Enable
+  Trading pop-up, then went looking for its wallet and deposit address to
+  read positions.
+- Step 7 now names the blue **Buy Yes** / **Buy No** button, clicks it
+  once, clicks it once more only after the Enable Trading pop-up, then
+  checks only that cash dropped and replies: no positions, no address
+  hunts. Sell names the blue **Sell** button. "Trade" is gone everywhere.
+- Trims: the `/value` call (positions has each worth), a shorter budget row.
+
+## 0.1.20
+
+- Sell (close a bet) got a click list in step 8: open the position's own
+  market page, **Sell**, the outcome, the shares (all: **Max**), one read
+  of question/outcome/shares/payout, ask; after the yes read the payout
+  again (2¢ rule), **Trade** once, reply with no checks.
+- `pmweb.py positions` prints each position's `url`
+  (`/event/<eventSlug>/<slug>`, fields checked live on the data API)
+  instead of a slug.
+- Cut rules the steps now hold: "say the bad case" (the step 6 question
+  has it), "they said yes" and "the price held" (steps 7a and 8d), and the
+  "price moved" failure row.
+
+## 0.1.19
+
+- Bet got a click list (steps 6 and 7).
+- `pmweb.py event` now prints a `url` per row:
+  `polymarket.com/event/<event>/<market>` opens a page for that one market
+  (checked live: its title is the market's question). No row hunting on
+  events with many rows, and step 6c checks the page's question matches
+  the row they chose.
+- Step 7: one read of "Avg. Price" right before **Trade** (the 2¢ rule),
+  then **Trade** once. **Enable Trading** pops up on the first bet: click
+  through it once, then **Trade** once more; never look for it. Reply
+  with shares and price, no other checks.
+- The question names the market, so the owner sees which one.
+- Trims to fit the cap: the bad-case rule, the price-held rule and its
+  failure row now point at steps 6 and 7 instead of repeating them.
+
+## 0.1.18
+
+- Withdraw $5 took ~5 min / 15 steps on 0.1.17. Half the steps were
+  `browser_observe` before each click, which the login rule asked for.
+  Clicks now go straight to `browser_act`; observe only when a click misses.
+- Base took 3 tries: the chain menu is two clicks (open, then pick).
+  Step 9e now says so, for chain and token. It also says "no reads until
+  f" (the run read the form 3 times early).
+- The withdraw question is now word for word, with the amount, USDC on
+  Base and the wallet's first 6 and last 4 (the run asked "confirm the
+  $5 site withdrawal").
+
+## 0.1.17
+
+- Claim got a click list (step 8), from the 3m 33s / 14-step redeem run:
+  Portfolio → **Redeem** on the row → close the auto-redeem pop-up (never
+  turn it on) → **Redeem** in the "Redeem Yes for $X" pop-up → "Cashed
+  Out" → close any pop-up and reply. The run lost steps to a double click,
+  two early API checks, a button/dialog check and a balance re-check.
+- Sell and claim now always ask first: the run took "can you help redeem
+  the win" as the yes.
+- Trims to fit the cap: When to use is one paragraph; dropped the "Order
+  failed" row (Idempotency covers it) and a "Say to the owner" line the
+  steps now cover.
+
+## 0.1.16
+
+- Withdraw skipped the question: the owner wrote "withdraw all my cash" and
+  the Butler took that as the yes. Step 9b now says always ask, then wait;
+  the request is not the yes. Security rule 5 says the yes must answer
+  your question.
+- Step 9g ends with "Then reply; no other checks", so it stops reading
+  positions after the withdraw.
+- Dropped the "daily budget" line (the failure table already covers it)
+  and a few words to fit the cap.
+
+## 0.1.15
+
+- Withdraw got stuck 5+ min on the token dropdown: it ran a form check
+  early, then clicked USDC again and again "to be sure". Step e now says:
+  pick chain first, then token; if a value already shows, leave it; one
+  click each; no re-click and no check before step f.
+- Step f is one `browser_extract` of all four fields. Small word trims to
+  fit the cap.
+
+## 0.1.14
+
+- Withdraw: two explicit stops so the Butler never improvises. Step f: the
+  address box can't be read back: stop, never a screenshot or a script.
+  Step g: the Withdraw click is refused or does nothing: stop, never
+  another way.
+- Dropped a Limits line that repeated "the account is yours", and shortened
+  "your owner only answers yes or no", to fit the cap.
+
+## 0.1.13
+
+- Withdraw (step 9) is a click list a-g from the 2026-10-23 walkthrough:
+  `bevo-read me` for the one allowed address, /portfolio, read Cash and ask
+  first, then Withdraw, Crypto address, type address + amount (Max for all),
+  Receive token USDC, Receive chain Base, check all 42 characters, click
+  Withdraw once. Asking before the form means no form left open while the
+  owner answers. No screenshot.
+- Dropped the screenshot from the bet form and the captcha row.
+- Shorter retry rules and wording to fit the 12,000-char cap.
+
+## 0.1.12
+
+- Fund: read the deposit address fresh on every deposit, never one
+  remembered from an earlier chat or run. The 2026-10-26 run skipped
+  Transfer Crypto and sent to an address it already knew (right this time,
+  but wrong if it is ever logged in to another account).
+
+## 0.1.11
+
+- Fund: the 2026-10-26 run took 6 min / 24 steps (re-checked login, opened
+  the chain menu, then tried to decode the QR picture and install a QR
+  reader). Now: open the site, Deposit, Transfer Crypto, read the field
+  under "Your deposit address", send. Never a screenshot, a QR code, or a
+  command or package to read the address; leave the chain menu alone.
+- Shorter "When to use" and failure table to fit the 12,000-char cap.
+
+## 0.1.10
+
+- Fund (step 5) is a click list a-e like login: Deposit, Transfer Crypto,
+  read the one EVM address and the $3 Base minimum, keep the pop-up open,
+  send the `bevo-send` card, watch the pop-up's balance update by itself.
+  From the 2026-10-23 walkthrough (the chain menu is not needed).
+- Trimmed two lines that repeated other rules, to stay under 12,000 chars.
+
+## 0.1.9
+
+- Login (step 3) is now a click list a-g: each line says what to click or
+  type, what the screen should show after ("See"), and the one fix to try
+  when it does not ("Else"). Buttons are found by their visible words. The
+  same list is meant to become a click helper's step list later.
+- An Enable Trading pop-up after login is closed, never searched for; it
+  comes back at the first bet.
+
+## 0.1.8
+
+- Login: `browser_type_email` (`submit: true`) and `browser_type_code` with
+  `fromInbox` (virtuals-agent). The inbox polling, `extract-otp` and the email
+  read-back are gone from the skill: about 6 fewer steps. Needs the agent
+  build that has both tools.
+
+## 0.1.7
+
+- `acp email extract-otp` takes `--message-id <id>` (acp-cli 1.0.38); the bare
+  `<id>` form failed once on every login.
+
+## 0.1.6
+
+- New account: fill "Choose a username" with the email's local part, tick the
+  terms, Continue; never ask the owner. The 2026-10-22 run stopped there to ask.
+
+## 0.1.5
+
+- Speed (2026-10-22 run logged in but took 11m 50s, 46 steps):
+  - Clear the email field before typing, then read it back. The field kept an
+    old address and act typed a second copy after it, so no code was sent.
+  - Use only a Polymarket mail that arrived after this Continue. The run took
+    a dead code from an earlier attempt.
+  - One `browser_observe` per click, no screenshot unless something is wrong.
+  - Write the reader only before steps 2 and 4, not before a login.
+
+## 0.1.4
+
+- Login code: type it with `browser_type_code` (virtuals-agent), never
+  `browser_act`. Even with the skill, act put the code into polymarket.com's
+  search bar twice on 2026-10-22.
+
+## 0.1.3
+
+- Geoblock: compare the check's `country` with the owner's first. A different
+  country is a proxy miss (Browserbase falls back to the closest exit, e.g.
+  Singapore for Malaysia): set the country again and recheck once, never call
+  it a block. 2026-10-22 run told a Malaysian owner Polymarket was closed.
+
 ## 0.1.2
 
 - Login code: click Continue once, wait on the inbox without touching the page,

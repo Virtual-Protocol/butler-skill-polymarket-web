@@ -1,22 +1,23 @@
 # butler-skill-polymarket-web
 
-Teaches a Butler agent to use [Polymarket](https://polymarket.com) through the website,
-in its cloud browser: show trending markets and odds, open its own Polymarket account
-with its Butler email, fund it with USDC on Base, buy and sell outcome shares, claim
-resolved winnings, and withdraw to the owner's Butler wallet.
+Teaches a Butler agent to use [Polymarket](https://polymarket.com) for its owner: show
+trending markets and odds, read its own Polymarket account (on its Butler wallet), bet,
+sell, claim resolved winnings, fund it, and withdraw to the owner's Butler wallet.
 
-Two things shape how it works:
+Three things shape how it works:
 
-- **Reads go to Polymarket's public API, money goes through the browser.** Trending
-  markets, search, prices and positions come from `gamma-api.polymarket.com` and
-  `data-api.polymarket.com`, which need no key. The browser is used only for deposit,
-  buy, sell, claim and withdraw, because each session spends the owner's daily budget.
-- **The account is the Butler's own.** It signs up with its own email and reads the login
-  code from its own inbox; the owner is never asked for an email, code or password. The
-  owner says one yes per bet, and approves the deposit card in the app.
+- **Reads go to Polymarket's public API.** Trending markets, search and prices come from
+  `gamma-api.polymarket.com`, which needs no key.
+- **Money goes through the server's site command.** From 0.2.0 the Butler runs
+  `acp site polymarket <action>`; bevo-server does the clicks in its own fresh browser,
+  files the owner's card, and reports `done`, `not_done`, `unknown`, `rejected` or
+  `failed`. The Butler never gets the browser.
+- **The old click steps are a backup only.** `references/clicks.md` holds the 0.1.30
+  click-by-click flow in the Butler's own browser. It runs only after `not_done` (nothing
+  was sent), with a new yes from the owner, and never in a duty.
 
-Status: experiment draft (0.1.0). It is compared against a Butler with no skill before
-deciding whether to keep it.
+Status: experiment draft. 0.2.0 timings are not measured yet (see `BENCHMARK.md`).
 
 - `SKILL.md` — the playbook (see the hub's
   [SKILL_STANDARD.md](https://github.com/Virtual-Protocol/butler-skills/blob/main/SKILL_STANDARD.md))
+- `references/clicks.md` — the backup click steps
