@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.23
+
+- Withdraw is crypto only (USDC on Base) to the Butler wallet; never Cash or a
+  bank. Polymarket's "Cash withdrawals are unavailable in your region" is the
+  fiat tab only, not a block.
+- Never tell the owner to withdraw on polymarket.com themselves: their own
+  wallet opens a different, empty account. A Butler did this on 2026-11-02
+  after its backup withdraw was refused.
+- No backup clicks for a withdraw: the page signer never signs a withdraw
+  `DepositWallet` `Batch` (bevo-server `pageSign.ts`), so B6 could only end
+  in `SIGN_TYPE_REFUSED`. After `not done:`, say nothing
+  moved and offer a new try.
+- Trimmed wording to stay under the 12,000-char body cap.
+
 ## 0.2.22
 
 - Before you start: Polymarket logs in with the Butler wallet only; never an
