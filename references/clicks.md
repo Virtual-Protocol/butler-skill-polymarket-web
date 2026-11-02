@@ -119,16 +119,8 @@ c. Its card: wait as in B1d. Close any pop-up. Reply; no checks.
 
 ## B6. Withdraw
 
-a. `bevo-read me`: `user.agentWalletAddress` is the only address.
-b. On `https://polymarket.com/portfolio` (**Log in**: B1 first): click
-   **Withdraw**, then **Crypto address**.
-c. Type a's address, then the amount (all: **Max**).
-d. Click **Receive chain**, then **Base**. Click **Receive token**, then
-   **USDC**. Already shown: skip it. No re-click; no reads until e.
-e. One `browser_extract` of all four. The address must match a in all 42
-   characters; else retype once, then stop. Unreadable: stop, say so.
-f. Click **Withdraw** once. See: cash drops. Refused or no change: stop, say
-   so. Reply; no checks.
+Never here. A page can't sign a withdraw (the signer refuses it), and the
+owner's own wallet opens a different, empty account. SKILL.md step 9.
 
 ## B8. Auto-claim
 
