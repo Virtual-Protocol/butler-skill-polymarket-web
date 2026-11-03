@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.24
+
+- The reader prints each market as key-value: `question <q> | outcome Yes 32.5c
+  | outcome No 67.5c | market <slug>`. It used to print the team first
+  (`AS Roma: Yes 30c, No 70c`), and on 2026-11-03 a Butler bet
+  `--outcome "AS Roma"` on a Yes/No market; the bet failed after the owner
+  tapped the card. A team or person is never an outcome.
+- The search and trending lists name each market's first outcome (`Over 57.5c`,
+  `AS Roma (Yes 32.5c)`), never a bare price.
+
 ## 0.2.23
 
 - Withdraw is crypto only (USDC on Base) to the Butler wallet; never Cash or a
