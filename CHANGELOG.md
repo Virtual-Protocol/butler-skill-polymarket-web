@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.2.27
+
+- Step 3's reader (`references/clicks.md` B2) shows cash cut DOWN to the
+  cent: $4.996 is `Cash $4.99`, never `$5.00`. A rounded-up figure made
+  Butler ask to withdraw more than the account held, and the server refused
+  it. The server's `positions` does the same since bevo-server #1510.
+- A deposit's run now waits up to 90 s for the bridge to credit the cash
+  (bevo-server #1512) and says `Deposited: $X arrived as Polymarket cash`.
+  Step 9 tells the owner it is usable at once; the duty rule drops its
+  "wait 3 min after a deposit" and bets once the summary says it arrived.
+
+## 0.2.26
+
+- Step 3 (cash and bets) runs Butler's own reader (`references/clicks.md`
+  B2) instead of `acp site polymarket positions`. Polymarket rate-limits by
+  IP, and every Butler's server read shared bevo-server's IP; two owners got
+  "rate-limited" on 2026-11-05. The reader finds the Polymarket wallet from
+  Polymarket's factory (`predictWalletAddress`, the same address the server
+  uses) and the cash through `bevo-rpc`, then reads `/v2/positions` itself.
+  Its lines match the server's (`market <slug>`, `won: redeemable`,
+  `lost: pays $0`). If it fails, Butler runs `acp site polymarket positions`.
+- Duties: the cash check before every bet is `pm_cash()` (clicks.md B2),
+  copied into the duty's code: wallet and pUSD through `bevo-rpc` only, no
+  Polymarket API. A duty that needs its bets (a sell, or skipping a market
+  it holds) calls `pm_positions()`, which reads `/v2/positions` from the
+  container. Both read the factory and pUSD addresses from Polymarket's
+  contracts page (the registry refuses an address typed in a skill). Only duties filed from now on get it; a filed duty keeps
+  its code until it is filed again.
+- Bet, sell, claim and auto-claim still read positions on the server.
+- Auto-claim offer: a done bet whose summary ends `Auto-redeem: off`
+  (bevo-server fix/polymarket-429-retry) makes Butler offer step 13's card,
+  once a chat. An owner won a bet on 2026-11-05 and the win sat unclaimed
+  because auto-claim was off. Step 13 now also runs when step 9 says so.
+
+## 0.2.25
+
+- The backup positions read (`references/clicks.md` B2) calls
+  `data-api.polymarket.com/v2/positions`. Polymarket retired Data API v1: the
+  old `/positions` answers `410 "Data API v1 has been retired"` (checked
+  2026-11-05). Two owners were told "rate-limited" that morning when their
+  Butlers read positions. `/tmp/pmback.py` reads v2's `data` rows (snake_case)
+  and drops dust under 0.01 shares itself, since v2 has no `sizeThreshold`.
+
 ## 0.2.24
 
 - The reader prints each market as key-value: `question <q> | outcome Yes 32.5c
