@@ -10,7 +10,11 @@
   uses) and the cash through `bevo-rpc`, then reads `/v2/positions` itself.
   Its lines match the server's (`market <slug>`, `won: redeemable`,
   `lost: pays $0`). If it fails, Butler runs `acp site polymarket positions`.
-- Bet, sell, claim, auto-claim and duties still read positions on the server.
+- Duties: the cash check before every bet is `pm_cash()` (clicks.md B2),
+  copied into the duty's code: wallet and pUSD through `bevo-rpc` only, no
+  Polymarket API. Only duties filed from now on get it; a filed duty keeps
+  its code until it is filed again.
+- Bet, sell, claim and auto-claim still read positions on the server.
 
 ## 0.2.25
 

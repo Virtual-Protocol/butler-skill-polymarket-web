@@ -74,6 +74,21 @@ python3 /tmp/pmback.py <ME>
 `positions unread` or an error: run `acp site polymarket positions`
 instead.
 
+**In a duty**, copy this into the duty's code and call `pm_cash()` before
+every bet. It needs only `bevo-rpc` (no Polymarket API). It raises on any
+error: then read `acp site polymarket positions` instead.
+
+```python
+import json, subprocess
+ME = "<ME>"  # bevo-read me's user.agentWalletAddress, written in when you file
+def _pm_call(to, data):
+    r = subprocess.run(["bevo-rpc", "137", "eth_call", json.dumps([{"to": to, "data": data}, "latest"])], stdout=-1, check=True, timeout=60).stdout
+    return json.loads(r)
+def pm_cash():
+    w = _pm_call("0x00000000000Fb5C9ADea0298D729A0CB3823Cc07", "0x04f1d3c7" + ME.lower()[2:].zfill(64))[-40:]
+    return int(_pm_call("0xC011a7E12a19f7B1f670d46F03B03f3342E82DFB", "0x70a08231" + w.zfill(64)), 16) / 1e6
+```
+
 ## B3. Fund: read the deposit address
 
 Do only these steps, every time: never an address you remember.
