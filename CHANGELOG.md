@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.26
+
+- Step 3 (cash and bets) runs Butler's own reader (`references/clicks.md`
+  B2) instead of `acp site polymarket positions`. Polymarket rate-limits by
+  IP, and every Butler's server read shared bevo-server's IP; two owners got
+  "rate-limited" on 2026-11-05. The reader finds the Polymarket wallet from
+  Polymarket's factory (`predictWalletAddress`, the same address the server
+  uses) and the cash through `bevo-rpc`, then reads `/v2/positions` itself.
+  Its lines match the server's (`market <slug>`, `won: redeemable`,
+  `lost: pays $0`). If it fails, Butler runs `acp site polymarket positions`.
+- Bet, sell, claim, auto-claim and duties still read positions on the server.
+
 ## 0.2.25
 
 - The backup positions read (`references/clicks.md` B2) calls
