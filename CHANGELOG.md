@@ -18,6 +18,10 @@
   contracts page (the registry refuses an address typed in a skill). Only duties filed from now on get it; a filed duty keeps
   its code until it is filed again.
 - Bet, sell, claim and auto-claim still read positions on the server.
+- Auto-claim offer: a done bet whose summary ends `Auto-redeem: off`
+  (bevo-server fix/polymarket-429-retry) makes Butler offer step 13's card,
+  once a chat. An owner won a bet on 2026-11-05 and the win sat unclaimed
+  because auto-claim was off. Step 13 now also runs when step 9 says so.
 
 ## 0.2.25
 
