@@ -52,13 +52,13 @@ if sys.argv[1] == "cash":
     q = {"to": re.search(r"CollateralToken[^`]*`(0x\w{40})", t)[1], "data": "0x70a08231" + sys.argv[2][2:].zfill(64)}
     r = subprocess.run(["bevo-rpc", "137", "eth_call", json.dumps([q, "latest"])], stdout=-1).stdout
     sys.exit(print(f"cash ${int(json.loads(r), 16) / 1e6:.2f}"))
-d = json.load(sys.stdin)
+d = [x for x in json.load(sys.stdin)["data"] if x["current_size"] >= 0.01]
 if not d: print("no positions")
 for x in d:
-    print(f"- {x['title']} | {x['outcome']} | {x['size']:g} shares | paid {c(x['avgPrice'])} | now {c(x['curPrice'])} | worth ${x['currentValue']:.2f} | P&L ${x['cashPnl']:+.2f} | url https://polymarket.com/event/{x['eventSlug']}/{x['slug']}" + (" | REDEEMABLE" if x.get("redeemable") else ""))
+    print(f"- {x['title']} | {x['outcome']} | {x['current_size']:g} shares | paid {c(x['avg_price'])} | now {c(x['current_price'])} | worth ${x['current_value']:.2f} | P&L ${x['unrealized_pnl']:+.2f} | url https://polymarket.com/event/{x['event_slug']}/{x['slug']}" + (" | REDEEMABLE" if x.get("redeemable") else ""))
 PY
 python3 /tmp/pmback.py cash <PM_WALLET>
-curl -sS "https://data-api.polymarket.com/positions?user=<PM_WALLET>&sizeThreshold=0.01" | python3 /tmp/pmback.py positions
+curl -sS "https://data-api.polymarket.com/v2/positions?user=<PM_WALLET>&limit=500" | python3 /tmp/pmback.py positions
 ```
 
 No `cash $`: read **Cash** atop the site.

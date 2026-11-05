@@ -1,7 +1,7 @@
 ---
 name: butler-polymarket-web
 description: "Bet on Polymarket for your owner: trending markets and odds, your own Polymarket account, bet, sell, claim, fund and withdraw, run by the server with one command."
-version: 0.2.24
+version: 0.2.25
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","withdraw from polymarket","deposit to polymarket"],"maxSteps":150,"requires":{"bins":["cat","curl","python3","acp","bevo-read","bevo-rpc","bevo-send"],"skills":[]}}}
 ---
 

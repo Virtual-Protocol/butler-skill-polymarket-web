@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.25
+
+- The backup positions read (`references/clicks.md` B2) calls
+  `data-api.polymarket.com/v2/positions`. Polymarket retired Data API v1: the
+  old `/positions` answers `410 "Data API v1 has been retired"` (checked
+  2026-11-05). Two owners were told "rate-limited" that morning when their
+  Butlers read positions. `/tmp/pmback.py` reads v2's `data` rows (snake_case)
+  and drops dust under 0.01 shares itself, since v2 has no `sizeThreshold`.
+
 ## 0.2.24
 
 - The reader prints each market as key-value: `question <q> | outcome Yes 32.5c
