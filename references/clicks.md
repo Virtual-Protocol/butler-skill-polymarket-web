@@ -56,7 +56,8 @@ def call(to, data):
 def c(p): return f"{round(float(p) * 100, 1):g}c"
 w = "0x" + call(FACTORY, "0x04f1d3c7" + sys.argv[1].lower()[2:].zfill(64))[-40:]
 print(f"Polymarket wallet {w}")
-print(f"Cash ${int(call(PUSD, '0x70a08231' + w[2:].zfill(64)), 16) / 1e6:.2f}")
+cents = int(call(PUSD, '0x70a08231' + w[2:].zfill(64)), 16) // 10_000  # cut down: $4.996 is $4.99, never $5.00
+print(f"Cash ${cents // 100}.{cents % 100:02d}")
 u = f"https://data-api.polymarket.com/v2/positions?user={w}&limit=500"
 try:
     d = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "butler-skill-polymarket-web"}), timeout=15))["data"]
