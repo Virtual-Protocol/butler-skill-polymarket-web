@@ -1,15 +1,21 @@
 # Changelog
 
-## 0.2.27
+## 0.2.28
 
 - Step 3's reader (`references/clicks.md` B2) shows cash cut DOWN to the
   cent: $4.996 is `Cash $4.99`, never `$5.00`. A rounded-up figure made
   Butler ask to withdraw more than the account held, and the server refused
   it. The server's `positions` does the same since bevo-server #1510.
 - A deposit's run now waits up to 90 s for the bridge to credit the cash
-  (bevo-server #1512) and says `Deposited: $X arrived as Polymarket cash`.
-  Step 9 tells the owner it is usable at once; the duty rule drops its
-  "wait 3 min after a deposit" and bets once the summary says it arrived.
+  (bevo-server #1512) and says `Deposited: $X arrived as Polymarket cash`
+  (or, when late, not to send it again). The duty rule drops its "wait 3
+  min after a deposit": it bets at once when the summary says `Deposited:`,
+  else on a later run. Butler had also repeated that wait in chat.
+
+## 0.2.27
+
+- Tagged but never registered: its SKILL.md body was 12,255 chars, over
+  the registry's 12,000 cap. 0.2.28 has the same changes, shorter.
 
 ## 0.2.26
 
