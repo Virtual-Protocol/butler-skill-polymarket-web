@@ -12,7 +12,10 @@
   `lost: pays $0`). If it fails, Butler runs `acp site polymarket positions`.
 - Duties: the cash check before every bet is `pm_cash()` (clicks.md B2),
   copied into the duty's code: wallet and pUSD through `bevo-rpc` only, no
-  Polymarket API. Only duties filed from now on get it; a filed duty keeps
+  Polymarket API. A duty that needs its bets (a sell, or skipping a market
+  it holds) calls `pm_positions()`, which reads `/v2/positions` from the
+  container. Both read the factory and pUSD addresses from Polymarket's
+  contracts page (the registry refuses an address typed in a skill). Only duties filed from now on get it; a filed duty keeps
   its code until it is filed again.
 - Bet, sell, claim and auto-claim still read positions on the server.
 

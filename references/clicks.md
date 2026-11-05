@@ -47,9 +47,9 @@ Write it once:
 
 ```sh
 cat > /tmp/pmback.py <<'PY'
-import json, subprocess, sys, urllib.error, urllib.request
-FACTORY = "0x00000000000Fb5C9ADea0298D729A0CB3823Cc07"  # Deposit Wallet Factory
-PUSD = "0xC011a7E12a19f7B1f670d46F03B03f3342E82DFB"  # pUSD CollateralToken
+import json, re, subprocess, sys, urllib.error, urllib.request
+t = urllib.request.urlopen("https://docs.polymarket.com/resources/contracts.md", timeout=15).read().decode()
+FACTORY, PUSD = (re.search(n + r"[^`]*`(0x\w{40})", t)[1] for n in ("Deposit Wallet Factory", "CollateralToken"))
 def call(to, data):
     r = subprocess.run(["bevo-rpc", "137", "eth_call", json.dumps([{"to": to, "data": data}, "latest"])], stdout=-1, check=True).stdout
     return json.loads(r)
@@ -74,19 +74,30 @@ python3 /tmp/pmback.py <ME>
 `positions unread` or an error: run `acp site polymarket positions`
 instead.
 
-**In a duty**, copy this into the duty's code and call `pm_cash()` before
-every bet. It needs only `bevo-rpc` (no Polymarket API). It raises on any
-error: then read `acp site polymarket positions` instead.
+**In a duty**, copy this into the duty's code. Call `pm_cash()` before
+every bet (only `bevo-rpc` and the contracts page), and `pm_positions()` when the duty
+needs its bets (a sell, or "skip a market I already hold"). Each raises on
+any error: then read `acp site polymarket positions` instead.
 
 ```python
-import json, subprocess
+import json, re, subprocess, urllib.request
 ME = "<ME>"  # bevo-read me's user.agentWalletAddress, written in when you file
 def _pm_call(to, data):
     r = subprocess.run(["bevo-rpc", "137", "eth_call", json.dumps([{"to": to, "data": data}, "latest"])], stdout=-1, check=True, timeout=60).stdout
     return json.loads(r)
+def _pm_addr(name):  # from Polymarket's contracts page, never typed in
+    t = urllib.request.urlopen("https://docs.polymarket.com/resources/contracts.md", timeout=15).read().decode()
+    return re.search(name + r"[^`]*`(0x\w{40})", t)[1]
+def _pm_wallet():
+    return _pm_call(_pm_addr("Deposit Wallet Factory"), "0x04f1d3c7" + ME.lower()[2:].zfill(64))[-40:]
 def pm_cash():
-    w = _pm_call("0x00000000000Fb5C9ADea0298D729A0CB3823Cc07", "0x04f1d3c7" + ME.lower()[2:].zfill(64))[-40:]
-    return int(_pm_call("0xC011a7E12a19f7B1f670d46F03B03f3342E82DFB", "0x70a08231" + w.zfill(64)), 16) / 1e6
+    return int(_pm_call(_pm_addr("CollateralToken"), "0x70a08231" + _pm_wallet().zfill(64)), 16) / 1e6
+def pm_positions():
+    """Each bet: market (slug), outcome, shares, worth, won (redeemable and worth > 0)."""
+    u = f"https://data-api.polymarket.com/v2/positions?user=0x{_pm_wallet()}&limit=500"
+    rows = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "butler-skill-polymarket-web"}), timeout=15))["data"]
+    return [{"market": x["slug"], "outcome": x["outcome"], "shares": x["current_size"], "worth": x["current_value"],
+             "won": bool(x.get("redeemable")) and x["current_value"] > 0} for x in rows if x["current_size"] >= 0.01]
 ```
 
 ## B3. Fund: read the deposit address
