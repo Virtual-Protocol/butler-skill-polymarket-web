@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.2.29
+
+- A Polymarket duty bets from its OWN duty wallet and that wallet's own
+  Polymarket account, never the main wallet's. The server signs the duty
+  wallet up, does Enable Trading, turns auto-claim on and signs its
+  deposits (the duty code still asks for a top-up); Butler
+  never looks for those steps and never runs `login` or `auto-redeem` in a
+  duty. Needs the bevo-server duty-wallet change (feat/pm-duty-own-wallet)
+  live first.
+- Build order: `duty_create` with `siteLimit` comes FIRST. Its one card
+  funds the duty wallet and sets the limit. A refusal (like
+  `polymarket_duty_paused`) stops the build at once with a one-line note to
+  the owner. On 2026-11-06 a build ran 12 minutes before it hit the pause
+  refusal.
+- Never `duty_pocket` after `duty_create` with `siteLimit`: it filed a
+  second card. The old "`site-limit-needed` → `duty_pocket`" step is gone.
+- Deleting a duty: the server sells everything, claims, withdraws and moves
+  the cash to the main wallet, and tells the owner what it could not sell.
+  Butler does none of it. A leftover the owner asks to sell gets step 5's
+  card for that wallet.
+- The duty's run rules and its `pm_cash()` / `pm_positions()` code moved
+  from SKILL.md and `references/clicks.md` B2 to a new `references/duty.md`
+  (keeps the body under the 12,000 cap). Its `ME` is now the duty wallet
+  (`acp wallet list`: `bound to duty <id>`), not `user.agentWalletAddress`.
+- Chat on the main wallet is unchanged: the owner signs each card.
+
 ## 0.2.28
 
 - Step 3's reader (`references/clicks.md` B2) shows cash cut DOWN to the
