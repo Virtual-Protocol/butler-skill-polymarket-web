@@ -2,6 +2,11 @@
 
 ## 0.2.29
 
+- SKILL.md says it outright: a duty's Polymarket cash starts at $0, so its
+  code deposits (at least $3) before a bet. Two staging builds skipped the
+  top-up when the rule lived only in references/duty.md.
+- "Run it now": there is no run-now; Butler says when the next tick is
+  instead of turning the duty off and on.
 - A Polymarket duty bets from its OWN duty wallet and that wallet's own
   Polymarket account, never the main wallet's. The server signs the duty
   wallet up, does Enable Trading, turns auto-claim on and signs its

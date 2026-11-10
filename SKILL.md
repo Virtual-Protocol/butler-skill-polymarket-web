@@ -200,15 +200,15 @@ account, never your main wallet's. The server does its sign-up, Enable
 Trading and auto-claim: never look for them, never run `login` or
 `auto-redeem` in a duty.
 
-**Build:** call `duty_create` with `siteLimit` FIRST (site `polymarket`,
-budget = bets plus top-ups, `maxPerRunUsd` = one bet). Its one card, held by
-your owner, funds the duty wallet and sets the limit. Never `duty_pocket`
-after it (a second card). Refused (like `polymarket_duty_paused`): stop
-building at once; tell your owner why in one line.
+**Build:** `duty_create` with `siteLimit` FIRST (site `polymarket`, budget =
+bets plus top-ups, `maxPerRunUsd` = one bet). Its one card funds the duty
+wallet and sets the limit. Never `duty_pocket` after it.
+Refused (like `polymarket_duty_paused`): stop; tell your owner why in one line.
 
 **Run:** every `acp site polymarket` action, inside the limit: no card, no
-ask. Write its code by `references/duty.md` (cash check before every bet,
-top-up, retries).
+ask. Code by `references/duty.md`. **Its Polymarket cash starts at $0:**
+short of a bet, its code runs `deposit --usd <short, at least 3>` first.
+Asked to run it now: there is no run-now; say when its next tick is.
 
 **Delete:** the server sells all, claims, withdraws, moves the cash to your
 main wallet and tells your owner what it could not sell. Do none of it.

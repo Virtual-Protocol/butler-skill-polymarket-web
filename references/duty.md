@@ -23,7 +23,9 @@ and never looks for those steps.
    Call `pm_positions()` when the duty needs its bets (a sell, or "skip a
    market I already hold").
 3. Cash short of the bet: `acp site polymarket deposit --usd <shortfall, at
-   least 3>`. Its summary says `Deposited:`: bet now. Else bet on a later run.
+   least 3>`. A new duty's cash is $0, so its first run always tops up:
+   code without this step never bets. Its summary says `Deposited:`: bet
+   now. Else bet on a later run.
 4. Refused `POLYMARKET_DUTY_NOT_ARMED`: the owner has not held the limit card
    yet. Wait. Keep no key. Never `bevo.fail`.
 5. A top-up or bet answered `not_done` or `failed` moved nothing. Try it again
