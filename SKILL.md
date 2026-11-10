@@ -1,7 +1,7 @@
 ---
 name: butler-polymarket-web
 description: "Bet on Polymarket for your owner: trending markets and odds, your own Polymarket account, bet, sell, claim, fund and withdraw, run by the server with one command."
-version: 0.2.29
+version: 0.2.30
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","withdraw from polymarket","deposit to polymarket"],"maxSteps":150,"requires":{"bins":["cat","curl","python3","acp","bevo-read","bevo-rpc","bevo-send"],"skills":[]}}}
 ---
 
@@ -212,8 +212,8 @@ Asked to run it now: there is no run-now; say when its next tick is.
 
 **Delete:** the server sells all, claims, withdraws, moves the cash to your
 main wallet and tells your owner what it could not sell. Do none of it.
-Asked to sell a leftover in a deleted duty's wallet: file step 5's card for
-that wallet.
+Deleted duty's leftover: the asked action plus `--wallet <its label>`.
+Archive only the wallet named.
 
 ## Idempotency and retries
 

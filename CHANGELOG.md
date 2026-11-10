@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.30
+
+- A deleted duty's leftover (sell, redeem, withdraw) runs with
+  `--wallet <its label>`, so it acts on that wallet's own Polymarket account,
+  not the main one's. Needs bevo-server #1593. Archive only the wallet the
+  owner names: staging Butler archived two others it was not asked about.
+
 ## 0.2.29
 
 - SKILL.md says it outright: a duty's Polymarket cash starts at $0, so its
