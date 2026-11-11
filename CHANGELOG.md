@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.32
+
+- A duty's `siteLimit` uses the owner's numbers exactly and never raises them.
+  A staging test asked for "$1 a bet, max $2" and Butler filed $12 total and
+  $4 a bet. A top-up (min $3) counts against the budget: when one is needed
+  and the budget cannot cover it, Butler asks first. Wording trimmed elsewhere
+  to stay under the 12,000-character cap.
+
 ## 0.2.31
 
 - A Polymarket duty now bets from the owner's MAIN wallet by default. It gets
