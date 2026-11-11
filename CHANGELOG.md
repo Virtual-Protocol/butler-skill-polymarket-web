@@ -1,5 +1,77 @@
 # Changelog
 
+## 0.2.34
+
+- A top-up no longer counts against a duty's Polymarket budget; only bets do
+  (bevo-server: budget counts bets only). It must still fit the budget left.
+  Needs that server change: on an older server a top-up still counts.
+
+## 0.2.33
+
+- `maxPerRunUsd` is ONE bet, never a bet plus a top-up. A staging test asked
+  for "$1 a bet" with a new sub wallet and Butler filed $6 a bet ($5 top-up +
+  $1 bet); the per-bet cap is for bets only.
+- With `ownWallet: true` the limit card makes, funds and binds the sub
+  wallet. Butler passes no `funding`, `walletBind` or wallet of its own. The
+  same test reused an old empty wallet and filed a separate $5 send card
+  beside the limit card, which could fund the wallet twice.
+
+## 0.2.32
+
+- A duty's `siteLimit` uses the owner's numbers exactly and never raises them.
+  A staging test asked for "$1 a bet, max $2" and Butler filed $12 total and
+  $4 a bet. A top-up (min $3) counts against the budget: when one is needed
+  and the budget cannot cover it, Butler asks first. Wording trimmed elsewhere
+  to stay under the 12,000-character cap.
+
+## 0.2.31
+
+- A Polymarket duty now bets from the owner's MAIN wallet by default. It gets
+  its own duty wallet only when the owner asked for a sub wallet: then
+  Butler files `siteLimit` with `ownWallet: true` (bevo-server and the app
+  take that field; the duty-tool half is virtuals-agent
+  `feat/pm-own-wallet-flag`). Without it the limit card sets the limit on the
+  main wallet. The cash check and the deposit of the shortfall stay in both
+  cases; the delete close-out text is for a duty wallet only.
+
+## 0.2.30
+
+- A deleted duty's leftover (sell, redeem, withdraw) runs with
+  `--wallet <its label>`, so it acts on that wallet's own Polymarket account,
+  not the main one's. Needs bevo-server #1593. Archive only the wallet the
+  owner names: staging Butler archived two others it was not asked about.
+
+## 0.2.29
+
+- SKILL.md says it outright: a duty's Polymarket cash starts at $0, so its
+  code deposits (at least $3) before a bet. Two staging builds skipped the
+  top-up when the rule lived only in references/duty.md.
+- "Run it now": there is no run-now; Butler says when the next tick is
+  instead of turning the duty off and on.
+- A Polymarket duty bets from its OWN duty wallet and that wallet's own
+  Polymarket account, never the main wallet's. The server signs the duty
+  wallet up, does Enable Trading, turns auto-claim on and signs its
+  deposits (the duty code still asks for a top-up); Butler
+  never looks for those steps and never runs `login` or `auto-redeem` in a
+  duty. Needs the bevo-server duty-wallet change (feat/pm-duty-own-wallet)
+  live first.
+- Build order: `duty_create` with `siteLimit` comes FIRST. Its one card
+  funds the duty wallet and sets the limit. A refusal (like
+  `polymarket_duty_paused`) stops the build at once with a one-line note to
+  the owner. On 2026-11-06 a build ran 12 minutes before it hit the pause
+  refusal.
+- Never `duty_pocket` after `duty_create` with `siteLimit`: it filed a
+  second card. The old "`site-limit-needed` → `duty_pocket`" step is gone.
+- Deleting a duty: the server sells everything, claims, withdraws and moves
+  the cash to the main wallet, and tells the owner what it could not sell.
+  Butler does none of it. A leftover the owner asks to sell gets step 5's
+  card for that wallet.
+- The duty's run rules and its `pm_cash()` / `pm_positions()` code moved
+  from SKILL.md and `references/clicks.md` B2 to a new `references/duty.md`
+  (keeps the body under the 12,000 cap). Its `ME` is now the duty wallet
+  (`acp wallet list`: `bound to duty <id>`), not `user.agentWalletAddress`.
+- Chat on the main wallet is unchanged: the owner signs each card.
+
 ## 0.2.28
 
 - Step 3's reader (`references/clicks.md` B2) shows cash cut DOWN to the
