@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.33
+
+- `maxPerRunUsd` is ONE bet, never a bet plus a top-up. A staging test asked
+  for "$1 a bet" with a new sub wallet and Butler filed $6 a bet ($5 top-up +
+  $1 bet); the per-bet cap is for bets only.
+- With `ownWallet: true` the limit card makes, funds and binds the sub
+  wallet. Butler passes no `funding`, `walletBind` or wallet of its own. The
+  same test reused an old empty wallet and filed a separate $5 send card
+  beside the limit card, which could fund the wallet twice.
+
 ## 0.2.32
 
 - A duty's `siteLimit` uses the owner's numbers exactly and never raises them.

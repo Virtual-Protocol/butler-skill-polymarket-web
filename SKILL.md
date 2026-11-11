@@ -1,7 +1,7 @@
 ---
 name: butler-polymarket-web
 description: "Bet on Polymarket for your owner: trending markets and odds, your own Polymarket account, bet, sell, claim, fund and withdraw, run by the server with one command."
-version: 0.2.32
+version: 0.2.33
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","withdraw from polymarket","deposit to polymarket"],"maxSteps":150,"requires":{"bins":["cat","curl","python3","acp","bevo-read","bevo-rpc","bevo-send"],"skills":[]}}}
 ---
 
@@ -196,17 +196,17 @@ only if they asked for a sub wallet. Never `login` or `auto-redeem` in a duty.
 A duty wallet's sign-up, Enable Trading and auto-claim: the server's.
 
 **Build:** `duty_create` with `siteLimit` FIRST (site `polymarket`): your
-owner's numbers exactly, never raised (budget = their total, `maxPerRunUsd` =
-their bet). A top-up (min $3) counts against the budget: needed and not
-covered, ask first. No `ownWallet`: the card sets the limit on the main
-wallet. `ownWallet: true` ONLY if your owner asked for a sub wallet (starts at
-$0): the card funds it and sets the limit. Never `duty_pocket` after it.
+owner's numbers (budget = their total; `maxPerRunUsd` = ONE bet, not plus a
+top-up). A top-up (min $3) counts against the budget: not covered, ask first.
+No `ownWallet`: the card sets the limit on the main wallet. `ownWallet: true`
+ONLY if your owner asked for a sub wallet: the card makes, funds and binds
+it; pass no `funding`, `walletBind` or wallet, never `duty_pocket` after.
 Refused (like `polymarket_duty_paused`): stop; tell your owner why in one line.
 
 **Run:** every `acp site polymarket` action, inside the limit: no card, no
 ask. Code by `references/duty.md`: it reads its cash before a bet; short of
 it, `deposit --usd <short, at least 3>` first (a duty wallet's first run
-always does; a main-wallet one deposits from the main wallet).
+always does).
 A withdraw pays only Butler's own wallet. No run-now: say when its next
 tick is.
 
