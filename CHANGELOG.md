@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.31
+
+- A Polymarket duty now bets from the owner's MAIN wallet by default. It gets
+  its own duty wallet only when the owner asked for a sub wallet: then
+  Butler files `siteLimit` with `ownWallet: true` (bevo-server and the app
+  take that field; the duty-tool half is virtuals-agent
+  `feat/pm-own-wallet-flag`). Without it the limit card sets the limit on the
+  main wallet. The cash check and the deposit of the shortfall stay in both
+  cases; the delete close-out text is for a duty wallet only.
+
 ## 0.2.30
 
 - A deleted duty's leftover (sell, redeem, withdraw) runs with

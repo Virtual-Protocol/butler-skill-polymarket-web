@@ -1,19 +1,22 @@
 # In a duty: its code and its rules
 
 SKILL.md's "In a duty" sends you here when you write a Polymarket duty's code.
-A duty bets from its **own duty wallet** and that wallet's own Polymarket
-account. It never reads or uses your main wallet's Polymarket account.
+By default a duty bets from your owner's **main wallet** and its Polymarket
+account. Only if your owner asked for a sub wallet (filed with `ownWallet:
+true`) does it bet from its **own duty wallet** and that wallet's own account.
 
-## Its own wallet
+## Which wallet
 
-`<ME>` below is the duty wallet's address: the `acp wallet list` row
-`bound to duty <id>`. Never `bevo-read me`'s `user.agentWalletAddress` (that
-is your main wallet). Cannot find it: the duty reads its cash with
-`acp site polymarket positions` instead.
+`<ME>` below is the address the duty bets from.
+- **Main wallet (default):** `bevo-read me`'s `user.agentWalletAddress`.
+- **Duty wallet (`ownWallet: true`):** the `acp wallet list` row
+  `bound to duty <id>`. Never `user.agentWalletAddress` (that is the main
+  wallet). Cannot find it: the duty reads its cash with
+  `acp site polymarket positions` instead.
 
-The server signs the duty wallet up on Polymarket, does Enable Trading, turns
-auto-claim on and keeps it on. Its code never runs `login` or `auto-redeem`
-and never looks for those steps.
+For a duty wallet the server signs it up on Polymarket, does Enable Trading,
+turns auto-claim on and keeps it on. Either way, the duty's code never runs
+`login` or `auto-redeem` and never looks for those steps.
 
 ## Each run
 
@@ -23,14 +26,15 @@ and never looks for those steps.
    Call `pm_positions()` when the duty needs its bets (a sell, or "skip a
    market I already hold").
 3. Cash short of the bet: `acp site polymarket deposit --usd <shortfall, at
-   least 3>`. A new duty's cash is $0, so its first run always tops up:
+   least 3>`. A duty wallet's cash starts at $0, so its first run always tops
+   up (a main-wallet duty tops up from the main wallet, inside the limit):
    code without this step never bets. Its summary says `Deposited:`: bet
    now. Else bet on a later run.
 4. Refused `POLYMARKET_DUTY_NOT_ARMED`: the owner has not held the limit card
    yet. Wait. Keep no key. Never `bevo.fail`.
 5. A top-up or bet answered `not_done` or `failed` moved nothing. Try it again
    on a later run, under a NEW key, at most 3 times. A top-up that found too
-   little in the duty wallet waits for the owner to add some.
+   little in the wallet waits for the owner to add some.
 6. Refused with any other code: it will refuse again. `bevo.fail` with that
    reason at once. No retry.
 7. Never retry after `unknown_outcome` or a pending answer: those may have
@@ -46,7 +50,7 @@ contracts page. Each function raises on any error: then read
 
 ```python
 import json, re, subprocess, urllib.request
-ME = "<ME>"  # the DUTY wallet's address, written in when you file
+ME = "<ME>"  # the address the duty bets from, written in when you file
 def _pm_call(to, data):
     r = subprocess.run(["bevo-rpc", "137", "eth_call", json.dumps([{"to": to, "data": data}, "latest"])], stdout=-1, check=True, timeout=60).stdout
     return json.loads(r)
