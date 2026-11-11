@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.34
+
+- A top-up no longer counts against a duty's Polymarket budget; only bets do
+  (bevo-server: budget counts bets only). It must still fit the budget left.
+  Needs that server change: on an older server a top-up still counts.
+
 ## 0.2.33
 
 - `maxPerRunUsd` is ONE bet, never a bet plus a top-up. A staging test asked

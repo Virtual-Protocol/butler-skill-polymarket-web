@@ -1,7 +1,7 @@
 ---
 name: butler-polymarket-web
 description: "Bet on Polymarket for your owner: trending markets and odds, your own Polymarket account, bet, sell, claim, fund and withdraw, run by the server with one command."
-version: 0.2.33
+version: 0.2.34
 metadata: {"butler":{"moneyMoving":true,"keywords":["polymarket","prediction market","trending on polymarket","polymarket odds","bet on","polymarket bet","buy yes","buy no","my polymarket","sell my polymarket","withdraw from polymarket","deposit to polymarket"],"maxSteps":150,"requires":{"bins":["cat","curl","python3","acp","bevo-read","bevo-rpc","bevo-send"],"skills":[]}}}
 ---
 
@@ -197,7 +197,7 @@ A duty wallet's sign-up, Enable Trading and auto-claim: the server's.
 
 **Build:** `duty_create` with `siteLimit` FIRST (site `polymarket`): your
 owner's numbers (budget = their total; `maxPerRunUsd` = ONE bet, not plus a
-top-up). A top-up (min $3) counts against the budget: not covered, ask first.
+top-up). A top-up (min $3) is not counted, but must fit the budget left.
 No `ownWallet`: the card sets the limit on the main wallet. `ownWallet: true`
 ONLY if your owner asked for a sub wallet: the card makes, funds and binds
 it; pass no `funding`, `walletBind` or wallet, never `duty_pocket` after.
