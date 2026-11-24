@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.35
+
+- **Region first.** Butler's first command in any Polymarket errand is
+  `acp site polymarket region` (bevo-server: Polymarket's own geoblock
+  answer for the owner's country, kept a week; one browser check when
+  none is kept). Blocked: one line, "Polymarket isn't available in
+  <country>", and nothing more: no market, price, cash, deposit or backup.
+  Tester 2026-11-24 (US): Butler quoted two BTC markets and offered a $1
+  deposit before the card said the US is blocked.
+- **No way around a geoblock.** The same tester got "the backup browser
+  method connects from a different country and might work". The fallback
+  rule now names a geoblock, and Security rule 5 forbids offering another
+  country, browser, VPN or the backup clicks.
+- Shorter wording in steps 2, 7, 9, 11, 12 to fit the 12,000-char cap.
+
 ## 0.2.34
 
 - A top-up no longer counts against a duty's Polymarket budget; only bets do
