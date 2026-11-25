@@ -21,3 +21,4 @@ Status: experiment draft. 0.2.0 timings are not measured yet (see `BENCHMARK.md`
 - `SKILL.md` — the playbook (see the hub's
   [SKILL_STANDARD.md](https://github.com/Virtual-Protocol/butler-skills/blob/main/SKILL_STANDARD.md))
 - `references/clicks.md` — the backup click steps
+- `references/duty.md` — a duty's run rules and code (it bets from its own duty wallet)
